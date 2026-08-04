@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>QueueLess</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+</head>
+
+<body>
+
+    <main class="container">
+
+        <!-- Application title -->
+        <section class="hero">
+
+            <p class="logo">
+                QueueLess
+            </p>
+
+            <h1>
+                Your time should not be spent standing in line.
+            </h1>
+
+            <p class="description">
+                Join a queue online and track your position
+                from your phone.
+            </p>
+
+        </section>
+
+
+        <!-- Join queue form -->
+        <section class="card">
+
+            <h2>
+                Join a Queue
+            </h2>
+
+            <form id="join-form">
+
+                <!-- User name -->
+                <label for="name">
+                    Your name
+                </label>
+
+                <input
+                    type="text"
+                    id="name"
+                    placeholder="Enter your name"
+                    required
+                >
+
+
+                <!-- Queue selection -->
+                <label for="queue">
+                    Select a queue
+                </label>
+
+                <select
+                    id="queue"
+                    required
+                >
+
+                    <option value="">
+                        Loading queues...
+                    </option>
+
+                </select>
+
+
+                <!-- Join button -->
+                <button type="submit">
+
+                    Join Queue
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Result section -->
+        <section
+            id="result"
+            class="result hidden"
+        >
+
+            <h2>
+                You joined successfully! 🎉
+            </h2>
+
+            <p id="welcome-message">
+            </p>
+
+            <div class="queue-information">
+
+                <div class="information-box">
+
+                    <span id="position">
+                        0
+                    </span>
+
+                    <p>
+                        Your position
+                    </p>
+
+                </div>
+
+
+                <div class="information-box">
+
+                    <span id="people-ahead">
+                        0
+                    </span>
+
+                    <p>
+                        People ahead
+                    </p>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- Error message -->
+        <p
+            id="error-message"
+            class="error-message"
+        >
+        </p>
+
+    </main>
+
+
+    <!-- Connect JavaScript -->
+    <script src="app.js"></script>
+
+</body>
+
+</html>
