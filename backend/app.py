@@ -1,4 +1,5 @@
 from flask import Flask
+from flask_cors import CORS
 
 from database import create_tables
 from routes.queue_routes import queue_routes
