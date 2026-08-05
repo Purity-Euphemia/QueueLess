@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>QueueLess Admin</title>
+
+    <link
+        rel="stylesheet"
+        href="style.css"
+    >
+
+</head>
+
+<body>
+
+    <main class="container">
+
+        <section class="hero">
+
+            <p class="logo">
+                QueueLess Admin
+            </p>
+
+            <h1>
+                Manage your queues
+            </h1>
+
+            <p class="description">
+                Create queues, view waiting users,
+                and call the next person.
+            </p>
+
+            <a
+                class="back-link"
+                href="index.html"
+            >
+                ← Go to User Page
+            </a>
+
+        </section>
+
+
+        <!-- Create queue -->
+
+        <section class="card">
+
+            <h2>
+                Create a New Queue
+            </h2>
+
+            <form id="create-queue-form">
+
+                <label for="queue-name">
+                    Queue name
+                </label>
+
+                <input
+                    id="queue-name"
+                    type="text"
+                    placeholder="Example: Hospital Queue"
+                    required
+                >
+
+                <button type="submit">
+
+                    Create Queue
+
+                </button>
+
+            </form>
+
+        </section>
+
+
+        <!-- Select queue -->
+
+        <section class="card admin-card">
+
+            <h2>
+                Queue Dashboard
+            </h2>
+
+            <label for="admin-queue-select">
+                Select a queue
+            </label>
+
+            <select id="admin-queue-select">
+
+                <option value="">
+                    Loading queues...
+                </option>
+
+            </select>
+
+
+            <div class="admin-actions">
+
+                <button
+                    id="refresh-button"
+                    type="button"
+                >
+                    Refresh
+                </button>
+
+                <button
+                    id="call-next-button"
+                    type="button"
+                >
+                    Call Next Person
+                </button>
+
+            </div>
+
+        </section>
+
+
+        <!-- Queue information -->
+
+        <section
+            id="queue-dashboard"
+            class="card hidden"
+        >
+
+            <h2 id="selected-queue-name">
+                Queue
+            </h2>
+
+            <p id="queue-summary">
+                No queue selected.
+            </p>
+
+
+            <div
+                id="members-list"
+                class="members-list"
+            >
+            </div>
+
+        </section>
+
+
+        <!-- Message -->
+
+        <p
+            id="admin-message"
+            class="admin-message"
+        >
+        </p>
+
+    </main>
+
+
+    <script src="admin.js"></script>
+
+</body>
+
+</html>
