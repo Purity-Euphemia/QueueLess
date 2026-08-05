@@ -10,6 +10,10 @@ from routes.admin_routes import admin_routes
 app = Flask(__name__)
 
 
+# Enable CORS for all routes (needed for frontend-backend communication)
+CORS(app)
+
+
 # Register the user queue routes
 app.register_blueprint(queue_routes)
 

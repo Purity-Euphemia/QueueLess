@@ -2,161 +2,100 @@
 <html lang="en">
 
 <head>
-
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>QueueLess Admin</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
-
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueLess Admin — Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 
 <body>
 
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">Queue<span>Less</span></a>
+        <div class="navbar-links">
+            <a href="index.html">Join Queue</a>
+            <a href="admin.html" class="active">Admin Panel</a>
+        </div>
+    </nav>
+
     <main class="container">
 
+        <!-- Hero -->
         <section class="hero">
-
-            <p class="logo">
-                QueueLess Admin
-            </p>
-
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Admin Dashboard
+            </div>
             <h1>
-                Manage your queues
+                Manage your<br>
+                <span class="highlight">queues</span>
             </h1>
-
             <p class="description">
                 Create queues, view waiting users,
                 and call the next person.
             </p>
-
-            <a
-                class="back-link"
-                href="index.html"
-            >
-                ← Go to User Page
-            </a>
-
         </section>
 
-
-        <!-- Create queue -->
-
+        <!-- Create Queue -->
         <section class="card">
-
-            <h2>
-                Create a New Queue
-            </h2>
+            <h2>Create a New Queue</h2>
 
             <form id="create-queue-form">
-
-                <label for="queue-name">
-                    Queue name
-                </label>
-
+                <label for="queue-name">Queue name</label>
                 <input
                     id="queue-name"
                     type="text"
-                    placeholder="Example: Hospital Queue"
+                    placeholder="e.g. Hospital Reception"
                     required
                 >
-
-                <button type="submit">
-
+                <button type="submit" class="btn-success" id="create-button">
                     Create Queue
-
                 </button>
-
             </form>
-
         </section>
 
+        <!-- Select Queue & Actions -->
+        <section class="card section-gap">
+            <h2>Queue Dashboard</h2>
 
-        <!-- Select queue -->
-
-        <section class="card admin-card">
-
-            <h2>
-                Queue Dashboard
-            </h2>
-
-            <label for="admin-queue-select">
-                Select a queue
-            </label>
-
+            <label for="admin-queue-select">Select a queue</label>
             <select id="admin-queue-select">
-
-                <option value="">
-                    Loading queues...
-                </option>
-
+                <option value="">Loading queues...</option>
             </select>
 
-
             <div class="admin-actions">
-
-                <button
-                    id="refresh-button"
-                    type="button"
-                >
+                <button id="refresh-button" type="button" class="btn-secondary">
                     Refresh
                 </button>
-
-                <button
-                    id="call-next-button"
-                    type="button"
-                >
+                <button id="call-next-button" type="button" class="btn-primary">
                     Call Next Person
                 </button>
-
             </div>
-
         </section>
 
-
-        <!-- Queue information -->
-
-        <section
-            id="queue-dashboard"
-            class="card hidden"
-        >
-
-            <h2 id="selected-queue-name">
-                Queue
-            </h2>
-
-            <p id="queue-summary">
+        <!-- Queue Dashboard Detail -->
+        <section id="queue-dashboard" class="card section-gap hidden">
+            <h2 id="selected-queue-name">Queue</h2>
+            <div id="queue-summary" class="queue-summary">
                 No queue selected.
-            </p>
-
-
-            <div
-                id="members-list"
-                class="members-list"
-            >
             </div>
-
+            <div id="members-list" class="members-list"></div>
         </section>
 
-
-        <!-- Message -->
-
-        <p
-            id="admin-message"
-            class="admin-message"
-        >
-        </p>
+        <!-- Admin Message -->
+        <p id="admin-message" class="admin-message"></p>
 
     </main>
 
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Footer -->
+    <footer class="footer">
+        QueueLess — Built for hackathon demo
+    </footer>
 
     <script src="admin.js"></script>
 

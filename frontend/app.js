@@ -1,275 +1,124 @@
-// Backend address
+const API_URL = "http://127.0.0.1:5000";
 
-const API_URL =
-    "http://127.0.0.1:5000";
+// DOM elements
+const joinForm = document.getElementById("join-form");
+const nameInput = document.getElementById("name");
+const queueSelect = document.getElementById("queue");
+const joinButton = document.getElementById("join-button");
+const resultSection = document.getElementById("result");
+const welcomeMessage = document.getElementById("welcome-message");
+const position = document.getElementById("position");
+const peopleAhead = document.getElementById("people-ahead");
+const errorMessage = document.getElementById("error-message");
+const toastContainer = document.getElementById("toast-container");
 
+// ============================================
+// Toast Notifications
+// ============================================
 
-// Get HTML elements
+function showToast(message, type = "info") {
+    const toast = document.createElement("div");
+    toast.className = `toast toast-${type}`;
+    toast.textContent = message;
+    toastContainer.appendChild(toast);
 
-const joinForm =
-    document.getElementById(
-        "join-form"
-    );
+    setTimeout(() => {
+        if (toast.parentNode) {
+            toast.remove();
+        }
+    }, 4000);
+}
 
-
-const nameInput =
-    document.getElementById(
-        "name"
-    );
-
-
-const queueSelect =
-    document.getElementById(
-        "queue"
-    );
-
-
-const resultSection =
-    document.getElementById(
-        "result"
-    );
-
-
-const welcomeMessage =
-    document.getElementById(
-        "welcome-message"
-    );
-
-
-const position =
-    document.getElementById(
-        "position"
-    );
-
-
-const peopleAhead =
-    document.getElementById(
-        "people-ahead"
-    );
-
-
-const errorMessage =
-    document.getElementById(
-        "error-message"
-    );
-
-
-// Load queues when the page opens
+// ============================================
+// Load Queues
+// ============================================
 
 async function loadQueues() {
-
     try {
+        const response = await fetch(`${API_URL}/queues`);
+        const data = await response.json();
 
-        const response =
-            await fetch(
-                `${API_URL}/queues`
-            );
+        queueSelect.innerHTML = `
+            <option value="">Select a queue</option>
+        `;
 
-
-        const data =
-            await response.json();
-
-
-        // Remove loading option
-
-        queueSelect.innerHTML =
-            `
-            <option value="">
-                Select a queue
-            </option>
-            `;
-
-
-        // Add every queue
-
-        data.queues.forEach(
-            function (queue) {
-
-                const option =
-                    document.createElement(
-                        "option"
-                    );
-
-
-                option.value =
-                    queue.id;
-
-
-                option.textContent =
-                    queue.name;
-
-
-                queueSelect.appendChild(
-                    option
-                );
-
-            }
-        );
+        data.queues.forEach(function (queue) {
+            const option = document.createElement("option");
+            option.value = queue.id;
+            option.textContent = queue.name;
+            queueSelect.appendChild(option);
+        });
 
     } catch (error) {
-
-        queueSelect.innerHTML =
-            `
-            <option>
-                Could not load queues
-            </option>
-            `;
-
-
-        showError(
-            "The backend is not running."
-        );
-
+        queueSelect.innerHTML = `
+            <option value="">No queues available</option>
+        `;
+        showToast("Could not connect to the backend.", "error");
     }
-
 }
 
+// ============================================
+// Join Queue
+// ============================================
 
-// Join queue
+joinForm.addEventListener("submit", async function (event) {
+    event.preventDefault();
 
-joinForm.addEventListener(
-    "submit",
+    errorMessage.classList.add("hidden");
+    errorMessage.textContent = "";
 
-    async function (event) {
+    const name = nameInput.value.trim();
+    const queueId = queueSelect.value;
 
-        // Stop page refresh
+    if (!queueId) {
+        showToast("Please select a queue.", "error");
+        return;
+    }
 
-        event.preventDefault();
+    // Loading state
+    joinButton.disabled = true;
+    joinButton.innerHTML = '<span class="spinner"></span> Joining...';
 
+    try {
+        const response = await fetch(`${API_URL}/queues/${queueId}/join`, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: name })
+        });
 
-        // Clear old errors
+        const data = await response.json();
 
-        errorMessage.textContent =
-            "";
-
-
-        // Get user information
-
-        const name =
-            nameInput.value.trim();
-
-
-        const queueId =
-            queueSelect.value;
-
-
-        // Send information to backend
-
-        try {
-
-            const response =
-                await fetch(
-
-                    `${API_URL}/queues/${queueId}/join`,
-
-                    {
-
-                        method: "POST",
-
-                        headers: {
-
-                            "Content-Type":
-                                "application/json"
-
-                        },
-
-                        body:
-                            JSON.stringify({
-
-                                name: name
-
-                            })
-
-                    }
-
-                );
-
-
-            const data =
-                await response.json();
-
-
-            // Check for backend error
-
-            if (!response.ok) {
-
-                showError(
-                    data.error
-                );
-
-                return;
-
-            }
-
-
-            // Display result
-
-            showQueueResult(
-                data,
-                name
-            );
-
-
-        } catch (error) {
-
-            showError(
-                "Could not connect to the backend."
-            );
-
+        if (!response.ok) {
+            showToast(data.error || "Could not join queue.", "error");
+            return;
         }
 
+        showQueueResult(data, name);
+        showToast(`Welcome, ${name}! You joined the queue.`, "success");
+
+    } catch (error) {
+        showToast("Could not connect to the backend.", "error");
+    } finally {
+        joinButton.disabled = false;
+        joinButton.innerHTML = "Join Queue";
     }
+});
 
-);
+// ============================================
+// Show Result
+// ============================================
 
+function showQueueResult(data, name) {
+    welcomeMessage.textContent = `Welcome, ${name}!`;
+    position.textContent = data.position;
+    peopleAhead.textContent = data.people_ahead;
 
-// Show successful result
-
-function showQueueResult(
-    data,
-    name
-) {
-
-    welcomeMessage.textContent =
-        `Welcome, ${name}!`;
-
-
-    position.textContent =
-        data.position;
-
-
-    peopleAhead.textContent =
-        data.people_ahead;
-
-
-    resultSection.classList.remove(
-        "hidden"
-    );
-
-
-    // Move to result
-
-    resultSection.scrollIntoView({
-
-        behavior: "smooth"
-
-    });
-
+    resultSection.classList.remove("hidden");
+    resultSection.scrollIntoView({ behavior: "smooth", block: "nearest" });
 }
 
-
-// Show error
-
-function showError(
-    message
-) {
-
-    errorMessage.textContent =
-        message;
-
-}
-
-
-// Start application
+// ============================================
+// Start
+// ============================================
 
 loadQueues();

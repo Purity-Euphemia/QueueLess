@@ -3,150 +3,98 @@
 
 <head>
     <meta charset="UTF-8">
-
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
-
-    <title>QueueLess</title>
-
-    <link
-        rel="stylesheet"
-        href="style.css"
-    >
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueLess — Skip the Line</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 
 <body>
 
+    <!-- Navigation -->
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">Queue<span>Less</span></a>
+        <div class="navbar-links">
+            <a href="index.html" class="active">Join Queue</a>
+            <a href="admin.html">Admin Panel</a>
+        </div>
+    </nav>
+
     <main class="container">
 
-        <!-- Application title -->
+        <!-- Hero -->
         <section class="hero">
-
-            <p class="logo">
-                QueueLess
-            </p>
-
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Digital Queue System
+            </div>
             <h1>
-                Your time should not be spent standing in line.
+                Stop waiting.<br>
+                Start <span class="highlight">living</span>.
             </h1>
-
             <p class="description">
                 Join a queue online and track your position
-                from your phone.
+                from your phone. No more standing in lines.
             </p>
-
         </section>
 
-
-        <!-- Join queue form -->
+        <!-- Join Queue Form -->
         <section class="card">
-
-            <h2>
-                Join a Queue
-            </h2>
+            <h2>Join a Queue</h2>
 
             <form id="join-form">
-
-                <!-- User name -->
-                <label for="name">
-                    Your name
-                </label>
-
+                <label for="name">Your name</label>
                 <input
                     type="text"
                     id="name"
-                    placeholder="Enter your name"
+                    placeholder="e.g. Amara Okafor"
                     required
                 >
 
-
-                <!-- Queue selection -->
-                <label for="queue">
-                    Select a queue
-                </label>
-
-                <select
-                    id="queue"
-                    required
-                >
-
-                    <option value="">
-                        Loading queues...
-                    </option>
-
+                <label for="queue">Select a queue</label>
+                <select id="queue" required>
+                    <option value="">Loading queues...</option>
                 </select>
 
-
-                <!-- Join button -->
-                <button type="submit">
-
+                <button type="submit" class="btn-primary" id="join-button">
                     Join Queue
-
                 </button>
-
             </form>
-
         </section>
 
-
-        <!-- Result section -->
-        <section
-            id="result"
-            class="result hidden"
-        >
-
-            <h2>
-                You joined successfully! 🎉
-            </h2>
-
-            <p id="welcome-message">
-            </p>
+        <!-- Result Section -->
+        <section id="result" class="result hidden">
+            <h2>You're in the queue!</h2>
+            <p id="welcome-message" class="subtitle"></p>
 
             <div class="queue-information">
-
                 <div class="information-box">
-
-                    <span id="position">
-                        0
-                    </span>
-
-                    <p>
-                        Your position
-                    </p>
-
+                    <span class="label">Your Position</span>
+                    <span id="position" class="number">0</span>
+                    <p>in line</p>
                 </div>
 
-
                 <div class="information-box">
-
-                    <span id="people-ahead">
-                        0
-                    </span>
-
-                    <p>
-                        People ahead
-                    </p>
-
+                    <span class="label">People Ahead</span>
+                    <span id="people-ahead" class="number">0</span>
+                    <p>waiting</p>
                 </div>
-
             </div>
-
         </section>
 
-
-        <!-- Error message -->
-        <p
-            id="error-message"
-            class="error-message"
-        >
-        </p>
+        <!-- Error Message -->
+        <p id="error-message" class="error-message hidden"></p>
 
     </main>
 
+    <!-- Toast Container -->
+    <div id="toast-container" class="toast-container"></div>
 
-    <!-- Connect JavaScript -->
+    <!-- Footer -->
+    <footer class="footer">
+        QueueLess — Built for hackathon demo
+    </footer>
+
     <script src="app.js"></script>
 
 </body>
