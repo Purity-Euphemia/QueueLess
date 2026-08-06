@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueLess — Queue History</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="dashboard.html" class="navbar-brand">Queue<span>Less</span></a>
+        <div class="navbar-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="queue-history.html" class="active">History</a>
+            <a href="profile.html">Profile</a>
+            <a href="#" id="logout-link">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Your Activity
+            </div>
+            <h1>
+                Queue<br>
+                <span class="highlight">History</span>
+            </h1>
+            <p class="description">
+                View your past queue visits
+            </p>
+        </section>
+
+        <section class="card">
+            <h2>Previous Visits</h2>
+            <div id="history-list" class="history-list"></div>
+        </section>
+
+        <p id="error-message" class="error-message hidden"></p>
+
+    </main>
+
+    <footer class="footer">
+        QueueLess — Skip the Line
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="auth.js"></script>
+    <script src="queue-history.js"></script>
+
+</body>
+
+</html>

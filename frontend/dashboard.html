@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueLess — Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="dashboard.html" class="navbar-brand">Queue<span>Less</span></a>
+        <div class="navbar-links">
+            <a href="dashboard.html" class="active">Dashboard</a>
+            <a href="queue-history.html">History</a>
+            <a href="profile.html">Profile</a>
+            <a href="#" id="logout-link">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Welcome Back!
+            </div>
+            <h1>
+                Manage your<br>
+                <span class="highlight">queues</span>
+            </h1>
+            <p class="description" id="user-greeting">
+                Ready to skip the line
+            </p>
+        </section>
+
+        <!-- Current Ticket Section -->
+        <section id="current-ticket-section" class="card hidden">
+            <h2>Your Current Ticket</h2>
+            <div class="ticket-display">
+                <div class="ticket-number" id="current-ticket-number">--</div>
+                <div class="ticket-info">
+                    <p id="current-queue-name">Queue</p>
+                    <p id="current-ticket-status">Status: Waiting</p>
+                </div>
+            </div>
+            <div class="queue-information">
+                <div class="information-box">
+                    <span class="label">Your Position</span>
+                    <span id="current-position" class="number">--</span>
+                </div>
+                <div class="information-box">
+                    <span class="label">Est. Wait Time</span>
+                    <span id="current-wait-time" class="number">--</span>
+                </div>
+            </div>
+            <button id="leave-queue-btn" class="btn-secondary">Leave Queue</button>
+        </section>
+
+        <!-- Join Queue Section -->
+        <section class="card section-gap">
+            <h2>Join a Queue</h2>
+            <form id="join-form">
+                <label for="queue-select">Select a queue</label>
+                <select id="queue-select" required>
+                    <option value="">Loading queues...</option>
+                </select>
+
+                <button type="submit" class="btn-primary" id="join-btn">
+                    Join Queue
+                </button>
+            </form>
+        </section>
+
+        <!-- Smart Queue Suggestions -->
+        <section class="card section-gap">
+            <h2>Queue Suggestions</h2>
+            <p class="subtitle">Showing fastest queues</p>
+            <div id="suggestions-list" class="suggestions-grid"></div>
+        </section>
+
+        <p id="error-message" class="error-message hidden"></p>
+
+    </main>
+
+    <footer class="footer">
+        QueueLess — Built for faster queues
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="auth.js"></script>
+    <script src="dashboard.js"></script>
+
+</body>
+
+</html>

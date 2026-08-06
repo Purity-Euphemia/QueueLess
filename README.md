@@ -24,80 +24,100 @@ QueueLess helps reduce unnecessary physical waiting by allowing users to join an
 * Join a queue online
 * View queue position
 * See the number of people ahead
-* Leave a queue
-* Check queue status
 
-### Admin Features
-
-* Create a queue
-* View all queues
-* View people waiting
-* Call the next person
-
-## Technologies
-
-### Frontend
-
-* HTML
-* CSS
-* JavaScript
-
-### Backend
-
-* Python
-* Flask
-* Flask-CORS
-
-### Database
-
-* SQLite
-
-## Project Structure
-
-```text
+```
 QueueLess/
 ├── backend/
-│   ├── app.py
-│   ├── database.py
-│   ├── models.py
+│   ├── app.py                          # Flask application factory
+│   ├── auth.py                         # JWT authentication middleware
+│   ├── database.py                     # Database initialization and schema
+│   ├── model.py                        # Data models (legacy)
+│   ├── queueless.db                    # SQLite database
 │   ├── routes/
-│   │   ├── admin_routes.py
-│   │   └── queue_routes.py
+│   │   ├── admin_routes.py             # Admin API endpoints
+│   │   ├── auth_routes.py              # Authentication endpoints
+│   │   └── queue_routes.py             # User queue endpoints
 │   └── services/
-│       └── queue_service.py
+│       ├── auth_service.py             # Authentication business logic
+│       └── queue_service.py            # Queue management business logic
 │
 ├── frontend/
-│   ├── index.html
-│   ├── style.css
-│   └── app.js
+│   ├── index.html                      # Home page with auth-aware nav
+│   ├── index.js                        # Home page logic
+│   ├── auth.js                         # Centralized API client
+│   ├── login.html & login.js           # Login page
+│   ├── register.html & register.js     # Registration page
+│   ├── dashboard.html & dashboard.js   # User dashboard
+│   ├── profile.html & profile.js       # User profile management
+│   ├── queue-history.html & queue-history.js    # Queue history viewer
+│   ├── admin-dashboard.html & admin-dashboard.js # Admin panel
+│   └── style.css                       # Global styles with responsive design
 │
 ├── .gitignore
-├── README.md
-└── requirements.txt
+├── README.md                           # This file
+└── requirements.txt                    # Python dependencies
 ```
 
-## Installation
+## Installation & Setup
 
-Clone the repository:
-
-```bash
-git clone https://github.com/YOUR-USERNAME/QueueLess.git
-```
-
-Move into the project folder:
+### Step 1: Clone Repository
 
 ```bash
+git clone <repository-url>
 cd QueueLess
 ```
 
-Create a virtual environment:
+### Step 2: Create Virtual Environment
 
 ```bash
 python3 -m venv .venv
+source .venv/bin/activate  # On Windows: .venv\Scripts\activate
 ```
 
-Activate the virtual environment:
+### Step 3: Install Dependencies
 
+```bash
+pip install -r requirements.txt
+```
+
+## Running the Application
+
+### Terminal 1: Start Backend
+
+```bash
+cd backend
+python3 app.py
+```
+
+Backend runs at: `http://127.0.0.1:5000`
+
+### Terminal 2: Start Frontend
+
+```bash
+cd frontend
+python3 -m http.server 5500
+```
+
+Frontend runs at: `http://127.0.0.1:5500`
+
+### Open in Browser
+
+Navigate to `http://127.0.0.1:5500/index.html`
+
+## Authentication
+
+The application uses JWT (JSON Web Tokens) for secure authentication:
+
+1. Users register with email and password
+2. Backend generates a 12-hour JWT token
+3. Token is stored in localStorage
+4. All API calls include the token in the Authorization header
+5. Session automatically logs out on 401 Unauthorized
+6. Protected routes require valid tokens with admin roles for admin endpoints
+
+### Test Credentials (after registration)
+
+Create your own account through the registration page.
 ### Linux
 
 ```bash

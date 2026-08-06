@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueLess — Profile</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="dashboard.html" class="navbar-brand">Queue<span>Less</span></a>
+        <div class="navbar-links">
+            <a href="dashboard.html">Dashboard</a>
+            <a href="queue-history.html">History</a>
+            <a href="profile.html" class="active">Profile</a>
+            <a href="#" id="logout-link">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Account Settings
+            </div>
+            <h1>
+                Your<br>
+                <span class="highlight">Profile</span>
+            </h1>
+        </section>
+
+        <section class="card">
+            <h2>Profile Information</h2>
+            <form id="profile-form">
+                <label for="name">Full Name</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    placeholder="Your full name" 
+                    required
+                >
+
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="your@email.com" 
+                    required
+                >
+
+                <label for="member-since">Member Since</label>
+                <input 
+                    type="text" 
+                    id="member-since" 
+                    disabled
+                    placeholder="Date"
+                >
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary" id="save-btn">
+                        Save Changes
+                    </button>
+                    <button type="button" class="btn-secondary" id="cancel-btn">
+                        Cancel
+                    </button>
+                </div>
+            </form>
+
+            <p id="success-message" class="success-message hidden"></p>
+            <p id="error-message" class="error-message hidden"></p>
+        </section>
+
+        <section class="card section-gap">
+            <h2>Security</h2>
+            <button id="change-password-btn" class="btn-secondary">
+                Change Password
+            </button>
+            <p class="subtitle">Update your password to keep your account secure.</p>
+        </section>
+
+        <section class="card section-gap">
+            <h2>Account</h2>
+            <button id="logout-btn" class="btn-danger">
+                Sign Out
+            </button>
+            <p class="subtitle">You will be logged out of all sessions.</p>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        QueueLess — Skip the Line
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <!-- Change Password Modal -->
+    <div id="password-modal" class="modal hidden">
+        <div class="modal-content">
+            <h2>Change Password</h2>
+            <form id="password-form">
+                <label for="old-password">Current Password</label>
+                <input type="password" id="old-password" required>
+
+                <label for="new-password">New Password</label>
+                <input type="password" id="new-password" required>
+
+                <label for="confirm-new-password">Confirm Password</label>
+                <input type="password" id="confirm-new-password" required>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn-primary">Update Password</button>
+                    <button type="button" class="btn-secondary" id="close-modal">Cancel</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+    <script src="profile.js"></script>
+
+</body>
+
+</html>

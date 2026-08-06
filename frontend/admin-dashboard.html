@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueLess Admin — Dashboard</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="admin-dashboard.html" class="navbar-brand">Queue<span>Less</span></a>
+        <div class="navbar-links">
+            <a href="admin-dashboard.html" class="active">Admin</a>
+            <a href="dashboard.html">Back to App</a>
+            <a href="#" id="logout-link">Logout</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="hero">
+            <div class="hero-badge">
+                <span class="dot"></span>
+                Admin Dashboard
+            </div>
+            <h1>
+                Manage your<br>
+                <span class="highlight">queues</span>
+            </h1>
+            <p class="description">
+                Control queues, serve customers, and view analytics
+            </p>
+        </section>
+
+        <!-- Create Queue Section -->
+        <section class="card">
+            <h2>Create a New Queue</h2>
+            <form id="create-queue-form">
+                <label for="queue-name">Queue Name</label>
+                <input 
+                    type="text" 
+                    id="queue-name" 
+                    placeholder="e.g., Customer Service" 
+                    required
+                >
+
+                <label for="queue-service">Service Type</label>
+                <input 
+                    type="text" 
+                    id="queue-service" 
+                    placeholder="e.g., Banking, Healthcare" 
+                >
+
+                <label for="queue-branch">Branch Name</label>
+                <input 
+                    type="text" 
+                    id="queue-branch" 
+                    placeholder="e.g., Main Office" 
+                >
+
+                <button type="submit" class="btn-success" id="create-btn">
+                    Create Queue
+                </button>
+            </form>
+            <p id="create-message" class="success-message hidden"></p>
+        </section>
+
+        <!-- Queue Selection & Control -->
+        <section class="card section-gap">
+            <h2>Queue Control</h2>
+            <label for="admin-queue-select">Select a queue</label>
+            <select id="admin-queue-select">
+                <option value="">Loading queues...</option>
+            </select>
+
+            <div class="admin-actions">
+                <button id="refresh-btn" class="btn-secondary">Refresh</button>
+                <button id="call-next-btn" class="btn-primary">Call Next</button>
+                <button id="skip-btn" class="btn-warning">Skip</button>
+                <button id="serve-btn" class="btn-success">Mark Served</button>
+            </div>
+
+            <div class="queue-status-actions">
+                <label for="queue-status-select">Queue Status</label>
+                <select id="queue-status-select">
+                    <option value="open">Open</option>
+                    <option value="closed">Closed</option>
+                </select>
+                <button id="update-status-btn" class="btn-secondary">Update Status</button>
+            </div>
+        </section>
+
+        <!-- Queue Dashboard Detail -->
+        <section id="queue-dashboard" class="card section-gap hidden">
+            <h2 id="selected-queue-name">Queue Details</h2>
+            
+            <div class="dashboard-grid">
+                <div class="stat-box">
+                    <h4>Waiting</h4>
+                    <p id="stat-waiting" class="stat-number">0</p>
+                </div>
+                <div class="stat-box">
+                    <h4>Current Ticket</h4>
+                    <p id="stat-current" class="stat-number">--</p>
+                </div>
+                <div class="stat-box">
+                    <h4>Est Avg Wait</h4>
+                    <p id="stat-avg-wait" class="stat-number">-- min</p>
+                </div>
+            </div>
+
+            <h3>Waiting Members</h3>
+            <div id="members-list" class="members-list"></div>
+        </section>
+
+        <p id="admin-message" class="error-message hidden"></p>
+
+    </main>
+
+    <footer class="footer">
+        QueueLess — Admin Panel
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="auth.js"></script>
+    <script src="admin-dashboard.js"></script>
+
+</body>
+
+</html>

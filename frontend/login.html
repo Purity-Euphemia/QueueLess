@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QueueLess — Login</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">Queue<span>Less</span></a>
+        <div class="navbar-links">
+            <a href="login.html" class="active">Login</a>
+            <a href="register.html">Sign Up</a>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="auth-card">
+            <h1>Welcome Back</h1>
+            <p class="auth-subtitle">Sign in to manage your queue experience</p>
+
+            <form id="login-form">
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="your@email.com" 
+                    required
+                >
+
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="Enter your password" 
+                    required
+                >
+
+                <button type="submit" class="btn-primary" id="login-btn">
+                    Sign In
+                </button>
+            </form>
+
+            <p id="error-message" class="error-message hidden"></p>
+
+            <div class="auth-footer">
+                <p>Don't have an account? <a href="register.html">Sign up here</a></p>
+                <p><a href="reset-password.html">Forgot your password?</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        QueueLess — Skip the Line
+    </footer>
+
+    <div id="toast-container" class="toast-container"></div>
+
+    <script src="auth.js"></script>
+    <script src="login.js"></script>
+
+</body>
+
+</html>

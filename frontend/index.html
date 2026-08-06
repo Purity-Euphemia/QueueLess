@@ -15,15 +15,21 @@
     <nav class="navbar">
         <a href="index.html" class="navbar-brand">Queue<span>Less</span></a>
         <div class="navbar-links">
-            <a href="index.html" class="active">Join Queue</a>
-            <a href="admin.html">Admin Panel</a>
+            <a href="index.html" class="active">Home</a>
+            <a id="nav-dashboard" href="dashboard.html" class="hidden">Dashboard</a>
+            <a id="nav-history" href="queue-history.html" class="hidden">History</a>
+            <a id="nav-profile" href="profile.html" class="hidden">Profile</a>
+            <a id="nav-admin" href="admin-dashboard.html" class="hidden">Admin</a>
+            <a id="nav-login" href="login.html">Login</a>
+            <a id="nav-register" href="register.html">Register</a>
+            <a id="nav-logout" href="#" class="hidden">Logout</a>
         </div>
     </nav>
 
     <main class="container">
 
-        <!-- Hero -->
-        <section class="hero">
+        <!-- Hero Section (for unauthenticated users) -->
+        <section id="hero-section" class="hero">
             <div class="hero-badge">
                 <span class="dot"></span>
                 Digital Queue System
@@ -33,52 +39,34 @@
                 Start <span class="highlight">living</span>.
             </h1>
             <p class="description">
-                Join a queue online and track your position
-                from your phone. No more standing in lines.
+                Join a queue online and track your position in real-time.
+                No more standing in lines.
             </p>
+            <div style="margin-top: 32px; display: flex; gap: 16px; justify-content: center;">
+                <a href="login.html" class="btn-primary">Sign In</a>
+                <a href="register.html" class="btn-secondary">Create Account</a>
+            </div>
         </section>
 
-        <!-- Join Queue Form -->
-        <section class="card">
-            <h2>Join a Queue</h2>
-
-            <form id="join-form">
-                <label for="name">Your name</label>
-                <input
-                    type="text"
-                    id="name"
-                    placeholder="e.g. Amara Okafor"
-                    required
-                >
-
-                <label for="queue">Select a queue</label>
-                <select id="queue" required>
-                    <option value="">Loading queues...</option>
-                </select>
-
-                <button type="submit" class="btn-primary" id="join-button">
-                    Join Queue
-                </button>
-            </form>
-        </section>
-
-        <!-- Result Section -->
-        <section id="result" class="result hidden">
-            <h2>You're in the queue!</h2>
-            <p id="welcome-message" class="subtitle"></p>
-
-            <div class="queue-information">
-                <div class="information-box">
-                    <span class="label">Your Position</span>
-                    <span id="position" class="number">0</span>
-                    <p>in line</p>
+        <!-- Welcome Section (for authenticated users) -->
+        <section id="welcome-section" class="welcome-card hidden">
+            <h1>Welcome back, <span id="user-name">User</span>!</h1>
+            <p class="description">Manage your queues and check your status below.</p>
+            
+            <div class="dashboard-grid">
+                <div class="stat-box">
+                    <span class="stat-label">ACTIVE TICKET</span>
+                    <span id="active-ticket-status" class="stat-value">None</span>
                 </div>
-
-                <div class="information-box">
-                    <span class="label">People Ahead</span>
-                    <span id="people-ahead" class="number">0</span>
-                    <p>waiting</p>
+                <div class="stat-box">
+                    <span class="stat-label">TOTAL VISITS</span>
+                    <span id="total-visits" class="stat-value">0</span>
                 </div>
+            </div>
+
+            <div style="display: flex; gap: 16px; margin-top: 32px; justify-content: center;">
+                <a href="dashboard.html" class="btn-primary">Go to Dashboard</a>
+                <a href="queue-history.html" class="btn-secondary">View History</a>
             </div>
         </section>
 
@@ -92,10 +80,11 @@
 
     <!-- Footer -->
     <footer class="footer">
-        QueueLess — Built for hackathon demo
+        QueueLess — Digital Queue Management System
     </footer>
 
-    <script src="app.js"></script>
+    <script src="auth.js"></script>
+    <script src="index.js"></script>
 
 </body>
 
