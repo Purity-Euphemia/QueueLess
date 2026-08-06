@@ -284,6 +284,7 @@ def join_queue_service(queue_id, name, user_id=None):
         "member_id": ticket_id,
         "ticket_number": ticket_number,
         "queue_id": queue_id,
+        "service": queue.get("service"),
         "position": count,
         "people_ahead": max(count - 1, 0),
         "estimated_wait_minutes": max(1, round(estimated_wait / 60)),

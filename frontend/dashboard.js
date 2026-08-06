@@ -102,7 +102,8 @@ joinForm.addEventListener("submit", async (e) => {
       queue_id: queueId,
       ticket_number: result.ticket.ticket_number,
       position: result.ticket.position,
-      estimated_wait: result.ticket.estimated_wait_minutes
+      estimated_wait: result.ticket.estimated_wait_minutes,
+      service: result.ticket.service || null
     };
     sessionStorage.setItem("current_ticket", JSON.stringify(currentTicket));
     
@@ -133,7 +134,8 @@ async function displayCurrentTicket() {
   // Get queue name
   const queueResult = await getQueueDetails(currentTicket.queue_id);
   if (queueResult.success) {
-    currentQueueName.textContent = queueResult.queue.queue.name;
+    const q = queueResult.queue.queue;
+    currentQueueName.textContent = `${q.name}${q.service ? " - " + q.service : ""}`;
   }
 }
 
