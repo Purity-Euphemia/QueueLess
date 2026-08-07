@@ -51,7 +51,7 @@ def get_user_by_email(email):
 
 def generate_auth_token(user_id, role):
     payload = {
-        "sub": user_id,
+        "sub": str(user_id),
         "role": role,
         "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=12)
     }
