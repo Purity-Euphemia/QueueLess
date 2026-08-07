@@ -83,7 +83,7 @@ def decode_reset_token(token):
         return {"error": "Invalid reset token."}
 
 
-def register_user(name, email, password):
+def register_user(name, email, password, role="customer"):
     if get_user_by_email(email) is not None:
         return {
             "error": "An account with that email already exists.",
@@ -95,15 +95,15 @@ def register_user(name, email, password):
     cursor = connection.cursor()
 
     cursor.execute(
-        "INSERT INTO users (name, email, password_hash) VALUES (?, ?, ?)",
-        (name, email, password_hash)
+        "INSERT INTO users (name, email, password_hash, role) VALUES (?, ?, ?, ?)",
+        (name, email, password_hash, role)
     )
 
     connection.commit()
     user_id = cursor.lastrowid
     connection.close()
 
-    token = generate_auth_token(user_id, "customer")
+    token = generate_auth_token(user_id, role)
 
     return {
         "message": "Account created successfully.",
@@ -112,7 +112,7 @@ def register_user(name, email, password):
             "id": user_id,
             "name": name,
             "email": email,
-            "role": "customer"
+            "role": role
         }
     }
 
