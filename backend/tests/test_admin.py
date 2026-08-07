@@ -35,7 +35,6 @@ class AdminTestCase(unittest.TestCase):
 
         # Call next person as admin
         next_res = self.client.post(f"/admin/queues/{queue_id}/next", headers=self.headers)
-        print("DEBUG RES:", next_res.get_json())
         self.assertEqual(next_res.status_code, 200)
         self.assertEqual(next_res.get_json()["member"]["ticket_number"], ticket_number)
 
