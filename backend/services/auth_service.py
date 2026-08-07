@@ -53,7 +53,7 @@ def generate_auth_token(user_id, role):
     payload = {
         "sub": str(user_id),
         "role": role,
-        "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=12)
+        "exp": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=12)
     }
 
     return jwt.encode(payload, SECRET_KEY, algorithm="HS256")
@@ -62,7 +62,7 @@ def generate_auth_token(user_id, role):
 def generate_reset_token(user_id):
     payload = {
         "reset": user_id,
-        "exp": datetime.datetime.utcnow() + datetime.timedelta(hours=1)
+        "exp": datetime.datetime.now(datetime.timezone.utc) + datetime.timedelta(hours=1)
     }
 
     return jwt.encode(payload, RESET_SECRET_KEY, algorithm="HS256")
