@@ -348,7 +348,58 @@ button:hover::after {
     opacity: 1;
 }
 
+/* -------- Premium Primary Button -------- */
 .btn-primary {
+    /* Gradient background with animated position */
+    background: linear-gradient(135deg, #2563EB, #3B82F6, #60A5FA);
+    background-size: 200% 200%;
+    color: #fff;
+    border-radius: 12px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
+    box-shadow: 0 4px 16px rgba(37, 99, 235, 0.4), 0 0 0 1px rgba(59, 130, 246, 0.3);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background-position 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Subtle shimmering overlay */
+.btn-primary::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, rgba(255,255,255,0.12), transparent 60%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    pointer-events: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px) scale(1.02);
+    background-position: 100% 0%;
+    box-shadow: 0 8px 30px rgba(37, 99, 235, 0.5), 0 0 0 1px rgba(96, 165, 250, 0.4);
+    .btn-primary::after { opacity: 1; }
+}
+
+.btn-primary:active {
+    transform: translateY(0) scale(0.98);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.btn-primary:focus-visible {
+    outline: 2px solid rgba(255,255,255,0.8);
+    outline-offset: 2px;
+}
+
+.btn-primary:disabled {
+    background: linear-gradient(135deg, #1E293B, #334155);
+    color: #475569;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.7;
+}
+
     background: linear-gradient(135deg, #2563EB, #3B82F6);
     color: white;
     box-shadow:
