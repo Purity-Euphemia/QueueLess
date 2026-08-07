@@ -24,7 +24,7 @@ def get_user_by_id(user_id):
         pass
 
     cursor.execute(
-        "SELECT id, email, name, role, created_at FROM users WHERE id = ?",
+        "SELECT * FROM users WHERE id = ?",
         (user_id,)
     )
 
