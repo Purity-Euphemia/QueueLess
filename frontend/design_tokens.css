@@ -1,0 +1,35 @@
+/* design_tokens.css – Centralised CSS variables for QueueLess */
+:root {
+  /* Colour palette */
+  --color-primary: #2563EB;   /* Blue 600 */
+  --color-primary-dark: #1D4ED8; /* Blue 700 */
+  --color-primary-light: #60A5FA; /* Blue 400 */
+  --color-accent: #38BDF8;   /* Sky 400 */
+  --color-glow: #818CF8;     /* Indigo 400 */
+  --color-background: #0B1120; /* Deep Navy */
+  --color-surface: #111A2E;   /* Dark Blue */
+  --color-success: #34D399;  /* Emerald */
+  --color-error: #F87171;    /* Red */
+  --color-text-primary: #CBD5E1;
+  --color-text-secondary: #94A3B8;
+
+  /* Spacing scale */
+  --spacing-1: 4px;
+  --spacing-2: 8px;
+  --spacing-3: 12px;
+  --spacing-4: 16px;
+  --spacing-5: 24px;
+  --spacing-6: 32px;
+
+  /* Border radius */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+}
+
+/* Dark mode overrides */
+[data-theme="dark"] {
+  --color-background: #0B1120;
+  --color-surface: #111A2E;
+  --color-text-primary: #E0E7FF;
+}
