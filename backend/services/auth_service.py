@@ -18,6 +18,11 @@ def get_user_by_id(user_id):
     connection = _get_database_connection()
     cursor = connection.cursor()
 
+    try:
+        user_id = int(user_id)
+    except (ValueError, TypeError):
+        pass
+
     cursor.execute(
         "SELECT id, email, name, role, created_at FROM users WHERE id = ?",
         (user_id,)
