@@ -1,8 +1,7 @@
 import unittest
 from app import app
 from database import create_tables
-from services.auth_service import register_user
-from auth import generate_token
+from services.auth_service import register_user, generate_auth_token, authenticate_user
 
 
 class AdminTestCase(unittest.TestCase):
@@ -15,11 +14,10 @@ class AdminTestCase(unittest.TestCase):
         auth_res = register_user("Admin User", "admin_test@queueless.com", "admin123", role="admin")
         if "user" in auth_res:
             self.admin_user = auth_res["user"]
-            self.token = generate_token(self.admin_user["id"], role="admin")
+            self.token = generate_auth_token(self.admin_user["id"], role="admin")
         else:
-            from services.auth_service import authenticate_user
-            user = authenticate_user("admin_test@queueless.com", "admin123")
-            self.token = generate_token(user["id"], role="admin")
+            user = authenticate_user("admin_test@queueless.com", "admin123")["user"]
+            self.token = generate_auth_token(user["id"], role="admin")
 
         self.headers = {
             "Authorization": f"Bearer {self.token}",
