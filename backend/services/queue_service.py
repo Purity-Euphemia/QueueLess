@@ -56,6 +56,22 @@ def _get_ticket_number(cursor, queue):
     return f"{prefix}{queue['id']:02d}-{count:03d}"
 
 
+def _get_now_serving(cursor, queue_id):
+    cursor.execute(
+        "SELECT ticket_number, name, called_at FROM tickets "
+        "WHERE queue_id = ? AND status = 'called' ORDER BY called_at LIMIT 1",
+        (queue_id,)
+    )
+    row = cursor.fetchone()
+    if row:
+        return {
+            "ticket_number": row["ticket_number"],
+            "name": row["name"],
+            "called_at": row["called_at"]
+        }
+    return None
+
+
 def _get_average_wait_seconds(cursor, queue_id):
     cursor.execute(
         "SELECT AVG(strftime('%s', served_at) - strftime('%s', called_at)) AS avg_time "
@@ -118,18 +134,20 @@ def get_all_queues():
     )
 
     rows = cursor.fetchall()
-    connection.close()
 
     queues = []
     for queue in rows:
+        now_serving = _get_now_serving(cursor, queue["id"])
         queues.append({
             "id": queue["id"],
             "name": queue["name"],
             "service": queue["service"],
             "branch_name": queue["branch_name"],
-            "status": queue["status"]
+            "status": queue["status"],
+            "now_serving": now_serving["ticket_number"] if now_serving else None
         })
 
+    connection.close()
     return queues
 
 
@@ -220,6 +238,7 @@ def get_member_position_service(queue_id, member_id):
 
     average_wait_seconds = _get_average_wait_seconds(cursor, queue_id)
     estimated_wait = (people_ahead + 1) * average_wait_seconds
+    now_serving = _get_now_serving(cursor, queue_id)
 
     connection.close()
 
@@ -230,7 +249,8 @@ def get_member_position_service(queue_id, member_id):
         "position": people_ahead + 1,
         "people_ahead": people_ahead,
         "estimated_wait_seconds": estimated_wait,
-        "estimated_wait_minutes": max(1, round(estimated_wait / 60))
+        "estimated_wait_minutes": max(1, round(estimated_wait / 60)),
+        "now_serving": now_serving["ticket_number"] if now_serving else None
     }
 
 
@@ -316,10 +336,13 @@ def get_queue_status_service(queue_id):
     average_wait_seconds = _get_average_wait_seconds(cursor, queue_id)
     estimated_wait = waiting * average_wait_seconds
 
+    now_serving = _get_now_serving(cursor, queue_id)
+
     connection.close()
 
     return {
         "queue_id": queue_id,
+        "now_serving": now_serving["ticket_number"] if now_serving else None,
         "current_ticket": {
             "id": current_ticket["id"],
             "name": current_ticket["name"],
@@ -330,6 +353,26 @@ def get_queue_status_service(queue_id):
         "waiting_count": waiting,
         "estimated_wait_minutes": max(0, round(estimated_wait / 60)),
         "estimated_wait": _format_wait_time(estimated_wait)
+    }
+
+
+def get_now_serving_service(queue_id):
+    connection = _get_database_connection()
+    cursor = connection.cursor()
+
+    queue = _get_queue(cursor, queue_id)
+    if queue is None:
+        connection.close()
+        return {"error": "Queue not found."}
+
+    now_serving_ticket = _get_now_serving(cursor, queue_id)
+    connection.close()
+
+    return {
+        "queue_id": queue_id,
+        "queue_name": queue["name"],
+        "now_serving": now_serving_ticket["ticket_number"] if now_serving_ticket else None,
+        "current_ticket": now_serving_ticket
     }
 
 
@@ -553,6 +596,7 @@ def get_queue_suggestions_service():
         )
         waiting = cursor.fetchone()["waiting"]
 
+        now_serving = _get_now_serving(cursor, queue["id"])
         average_wait_seconds = _get_average_wait_seconds(cursor, queue["id"])
         suggestions.append({
             "id": queue["id"],
@@ -560,6 +604,7 @@ def get_queue_suggestions_service():
             "service": queue["service"],
             "branch_name": queue["branch_name"],
             "waiting": waiting,
+            "now_serving": now_serving["ticket_number"] if now_serving else None,
             "estimated_wait": _format_wait_time(waiting * average_wait_seconds)
         })
 

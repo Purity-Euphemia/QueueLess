@@ -46,7 +46,44 @@ document.addEventListener('DOMContentLoaded', async () => {
         logout();
         window.location.href = 'login.html';
     });
+
+    // Load live now serving board
+    await loadNowServingGrid();
+    setInterval(loadNowServingGrid, 10000);
 });
+
+async function loadNowServingGrid() {
+    const grid = document.getElementById('now-serving-grid');
+    if (!grid) return;
+
+    try {
+        const result = await getAllQueues();
+        if (result.success && result.queues && result.queues.length > 0) {
+            grid.innerHTML = '';
+            result.queues.forEach(queue => {
+                const card = document.createElement('div');
+                card.className = 'now-serving-card';
+                card.innerHTML = `
+                    <div class="now-serving-header">
+                        <span class="queue-name">${queue.name}</span>
+                        <span class="badge badge-${queue.status}">${queue.status}</span>
+                    </div>
+                    <p class="service-type">${queue.service || 'General Service'}</p>
+                    <div class="serving-number-box">
+                        <span class="serving-label">CURRENTLY SERVING</span>
+                        <span class="serving-value">${queue.now_serving || 'None'}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        } else {
+            grid.innerHTML = '<p class="empty-message">No active queues available right now.</p>';
+        }
+    } catch (error) {
+        console.error('Error loading now serving grid:', error);
+        grid.innerHTML = '<p class="empty-message">Could not load live status.</p>';
+    }
+}
 
 /**
  * Load user stats and display in welcome section

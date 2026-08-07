@@ -209,6 +209,16 @@ async function getQueueStatus(queueId) {
   return { success: false, error: data.error };
 }
 
+async function getNowServing(queueId) {
+  const { status, data } = await apiCall(`/queues/${queueId}/now-serving`, "GET");
+
+  if (status === 200) {
+    return { success: true, data };
+  }
+
+  return { success: false, error: data.error };
+}
+
 async function getQueueDetails(queueId) {
   const { status, data } = await apiCall(`/queues/${queueId}`, "GET");
 

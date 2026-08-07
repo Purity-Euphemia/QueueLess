@@ -9,7 +9,8 @@ from services.queue_service import (
     leave_queue_service,
     get_queue_status_service,
     get_queue_history_service,
-    get_queue_suggestions_service
+    get_queue_suggestions_service,
+    get_now_serving_service
 )
 
 
@@ -101,6 +102,19 @@ def get_queue(queue_id):
 )
 def get_queue_status(queue_id):
     result = get_queue_status_service(queue_id)
+
+    if "error" in result:
+        return jsonify(result), 404
+
+    return jsonify(result)
+
+
+@queue_routes.route(
+    "/queues/<int:queue_id>/now-serving",
+    methods=["GET"]
+)
+def get_now_serving(queue_id):
+    result = get_now_serving_service(queue_id)
 
     if "error" in result:
         return jsonify(result), 404
