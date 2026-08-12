@@ -98,15 +98,15 @@ def _create_notification(cursor, user_id, ticket_id, message):
     )
 
 
-def create_new_queue(name, service=None, branch_name=None):
+def create_new_queue(name, service=None, branch_name=None, category=None, description=None):
     connection = _get_database_connection()
     cursor = connection.cursor()
 
     branch_id = _get_branch_id(cursor, branch_name)
 
     cursor.execute(
-        "INSERT INTO queues (name, service, branch_id) VALUES (?, ?, ?)",
-        (name, service, branch_id)
+        "INSERT INTO queues (name, service, branch_id, category, description) VALUES (?, ?, ?, ?, ?)",
+        (name, service, branch_id, category, description)
     )
 
     connection.commit()
@@ -118,6 +118,8 @@ def create_new_queue(name, service=None, branch_name=None):
         "name": name,
         "service": service,
         "branch_name": branch_name,
+        "category": category,
+        "description": description,
         "status": "open"
     }
 
@@ -127,7 +129,7 @@ def get_all_queues():
     cursor = connection.cursor()
 
     cursor.execute(
-        "SELECT q.id, q.name, q.status, q.service, b.name AS branch_name "
+        "SELECT q.id, q.name, q.status, q.service, q.category, q.description, b.name AS branch_name "
         "FROM queues q "
         "LEFT JOIN branches b ON q.branch_id = b.id "
         "ORDER BY q.id"
@@ -138,13 +140,25 @@ def get_all_queues():
     queues = []
     for queue in rows:
         now_serving = _get_now_serving(cursor, queue["id"])
+        cursor.execute(
+            "SELECT COUNT(*) AS waiting FROM tickets WHERE queue_id = ? AND status = 'waiting'",
+            (queue["id"],)
+        )
+        waiting = cursor.fetchone()["waiting"]
+        average_wait_seconds = _get_average_wait_seconds(cursor, queue["id"])
+
         queues.append({
             "id": queue["id"],
             "name": queue["name"],
             "service": queue["service"],
+            "category": queue["category"],
+            "description": queue["description"],
             "branch_name": queue["branch_name"],
             "status": queue["status"],
-            "now_serving": now_serving["ticket_number"] if now_serving else None
+            "waiting": waiting,
+            "now_serving": now_serving["ticket_number"] if now_serving else None,
+            "estimated_wait": _format_wait_time(waiting * average_wait_seconds),
+            "estimated_wait_seconds": waiting * average_wait_seconds
         })
 
     connection.close()
@@ -579,7 +593,7 @@ def get_queue_suggestions_service():
     cursor = connection.cursor()
 
     cursor.execute(
-        "SELECT q.id, q.name, q.service, q.status, b.name AS branch_name "
+        "SELECT q.id, q.name, q.service, q.status, q.category, q.description, b.name AS branch_name "
         "FROM queues q "
         "LEFT JOIN branches b ON q.branch_id = b.id "
         "WHERE q.status = 'open' "
@@ -602,6 +616,8 @@ def get_queue_suggestions_service():
             "id": queue["id"],
             "name": queue["name"],
             "service": queue["service"],
+            "category": queue["category"],
+            "description": queue["description"],
             "branch_name": queue["branch_name"],
             "waiting": waiting,
             "now_serving": now_serving["ticket_number"] if now_serving else None,
