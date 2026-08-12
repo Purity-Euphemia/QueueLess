@@ -33,7 +33,9 @@ def create_queue():
     queue = create_new_queue(
         data["name"],
         data.get("service"),
-        data.get("branch_name")
+        data.get("branch_name"),
+        data.get("category"),
+        data.get("description")
     )
 
     return jsonify({
@@ -48,6 +50,9 @@ def create_queue():
 )
 def get_queues():
     queues = get_all_queues()
+    category = request.args.get("category")
+    if category:
+        queues = [q for q in queues if q.get("category") == category]
 
     return jsonify({"queues": queues})
 

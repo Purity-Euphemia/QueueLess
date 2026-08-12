@@ -37,8 +37,12 @@
         </section>
 
         <!-- Current Ticket Section -->
-        <section id="current-ticket-section" class="card hidden">
+        <section id="current-ticket-section" class="card hidden ticket-premium-card">
             <h2>Your Current Ticket</h2>
+            <div id="proximity-alert" class="alert-banner hidden">
+                <span class="alert-icon">🔔</span>
+                <span class="alert-text">Your turn is near! Please proceed to the service counter.</span>
+            </div>
             <div class="ticket-display">
                 <div class="ticket-number" id="current-ticket-number">--</div>
                 <div class="ticket-info">
@@ -46,6 +50,15 @@
                     <p id="current-ticket-status">Status: Waiting</p>
                 </div>
             </div>
+            
+            <!-- Live Progress Bar -->
+            <div class="ticket-progress-bar">
+                <div id="progress-step-joined" class="progress-step active">Joined</div>
+                <div id="progress-step-waiting" class="progress-step">Waiting</div>
+                <div id="progress-step-near" class="progress-step">Turn Near</div>
+                <div id="progress-step-called" class="progress-step">Called</div>
+            </div>
+
             <div class="queue-information">
                 <div class="information-box now-serving-box">
                     <span class="label">Now Serving</span>
@@ -63,20 +76,61 @@
             <button id="leave-queue-btn" class="btn-secondary">Leave Queue</button>
         </section>
 
-        <!-- Join Queue Section -->
-        <section class="card section-gap">
-            <h2>Join a Queue</h2>
-            <form id="join-form">
-                <label for="queue-select">Select a queue</label>
-                <select id="queue-select" required>
-                    <option value="">Loading queues...</option>
-                </select>
+        <!-- Join Queue Section (Visual Discovery) -->
+        <section id="discovery-section" class="card section-gap">
+            <h2>Find a Business</h2>
+            <p class="subtitle">Select a category to browse active services</p>
+            
+            <!-- Categories Grid -->
+            <div class="category-grid">
+                <div class="category-card" data-category="hospital">
+                    <span class="cat-icon">🏥</span>
+                    <span class="cat-name">Hospital</span>
+                </div>
+                <div class="category-card" data-category="bank">
+                    <span class="cat-icon">🏦</span>
+                    <span class="cat-name">Bank</span>
+                </div>
+                <div class="category-card" data-category="pharmacy">
+                    <span class="cat-icon">💊</span>
+                    <span class="cat-name">Pharmacy</span>
+                </div>
+                <div class="category-card" data-category="salon">
+                    <span class="cat-icon">💇</span>
+                    <span class="cat-name">Salon</span>
+                </div>
+                <div class="category-card" data-category="government">
+                    <span class="cat-icon">🏛️</span>
+                    <span class="cat-name">Government</span>
+                </div>
+                <div class="category-card" data-category="restaurant">
+                    <span class="cat-icon">🍽️</span>
+                    <span class="cat-name">Restaurant</span>
+                </div>
+            </div>
 
-                <button type="submit" class="btn-primary" id="join-btn">
-                    Join Queue
-                </button>
-            </form>
+            <!-- Businesses List -->
+            <div id="businesses-section" class="hidden section-gap">
+                <h3 id="category-title">Businesses</h3>
+                <div id="businesses-list" class="businesses-grid">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
         </section>
+
+        <!-- Service Selection Modal -->
+        <div id="service-modal" class="modal-backdrop hidden">
+            <div class="modal-content card">
+                <div class="modal-header">
+                    <h3 id="modal-business-name">Business Name</h3>
+                    <button id="close-modal-btn" class="close-btn">&times;</button>
+                </div>
+                <p id="modal-business-description" class="subtitle">Please select a service to join the queue</p>
+                <div id="services-list" class="services-vertical-list">
+                    <!-- Populated dynamically via JS -->
+                </div>
+            </div>
+        </div>
 
         <!-- Smart Queue Suggestions -->
         <section class="card section-gap">
