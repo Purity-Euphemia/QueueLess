@@ -254,6 +254,12 @@ serviceModal.addEventListener("click", (e) => {
 
 // Join queue action
 async function joinQueueById(queueId) {
+  if (currentTicket) {
+    showToast("You are already in an active queue. Please leave your current queue first.", "warning");
+    closeServiceModal();
+    return;
+  }
+
   const btn = event.target;
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Joining...';
@@ -318,12 +324,10 @@ async function loadSuggestions() {
 async function displayCurrentTicket() {
   if (!currentTicket) {
     currentTicketSection.classList.add("hidden");
-    discoverySection.classList.remove("hidden");
     return;
   }
 
   currentTicketSection.classList.remove("hidden");
-  discoverySection.classList.add("hidden");
 
   currentTicketNumber.textContent = currentTicket.ticket_number;
   currentPosition.textContent = currentTicket.position !== undefined ? currentTicket.position : "--";
