@@ -230,8 +230,8 @@ function openServiceModal(biz) {
     `;
 
     if (!isClosed) {
-      item.querySelector(".join-service-btn").addEventListener("click", () => {
-        joinQueueById(q.id);
+      item.querySelector(".join-service-btn").addEventListener("click", (e) => {
+        joinQueueById(q.id, e.target);
       });
     }
 
@@ -253,14 +253,13 @@ serviceModal.addEventListener("click", (e) => {
 });
 
 // Join queue action
-async function joinQueueById(queueId) {
+async function joinQueueById(queueId, btn) {
   if (currentTicket) {
     showToast("You are already in an active queue. Please leave your current queue first.", "warning");
     closeServiceModal();
     return;
   }
 
-  const btn = event.target;
   btn.disabled = true;
   btn.innerHTML = '<span class="spinner"></span> Joining...';
 
