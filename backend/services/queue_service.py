@@ -44,16 +44,28 @@ def _get_queue(cursor, queue_id):
 
 
 def _get_ticket_number(cursor, queue):
-    prefix = queue["service"][:1].upper() if queue["service"] else queue["name"][:1].upper()
+    # Fetch sibling queues under same business to determine prefix index (A, B, C...)
+    cursor.execute(
+        "SELECT id FROM queues WHERE name = ? ORDER BY id",
+        (queue["name"],)
+    )
+    sibling_queues = [row["id"] for row in cursor.fetchall()]
+    
+    try:
+        index = sibling_queues.index(queue["id"])
+    except ValueError:
+        index = 0
+        
+    prefix = chr(ord('A') + (index % 26))
 
     cursor.execute(
         "SELECT COUNT(*) AS total FROM tickets WHERE queue_id = ?",
         (queue["id"],)
     )
 
-    count = cursor.fetchone()["total"] + 1
+    count = cursor.fetchone()["total"] + 101
 
-    return f"{prefix}{queue['id']:02d}-{count:03d}"
+    return f"{prefix}{count}"
 
 
 def _get_now_serving(cursor, queue_id):

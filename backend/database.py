@@ -136,9 +136,10 @@ def seed_data(cursor):
     # Seed data
     seeds = [
         # Hospital
-        ("City General Hospital", "General Consultation", "hospital", "Consultation with general practitioners and basic healthcare needs"),
-        ("City General Hospital", "Pediatrics", "hospital", "Specialized care for infants, children, and adolescents"),
-        ("City General Hospital", "Emergency Care", "hospital", "Urgent care for critical health situations"),
+        ("Lagos General Hospital", "General Consultation", "hospital", "Consultation with general practitioners and basic healthcare needs"),
+        ("Lagos General Hospital", "Pharmacy", "hospital", "Prescription dispension and pharmaceutical care"),
+        ("Lagos General Hospital", "Laboratory", "hospital", "Blood tests, diagnostics, and clinical analysis"),
+        ("Lagos General Hospital", "Emergency", "hospital", "Urgent emergency medical response and critical care"),
         ("St. Jude Dental Clinic", "Teeth Cleaning", "hospital", "Routine cleanings and preventative checkups"),
         ("St. Jude Dental Clinic", "Orthodontics", "hospital", "Braces, aligners, and dental corrections"),
         

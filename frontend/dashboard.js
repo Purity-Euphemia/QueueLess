@@ -40,6 +40,38 @@ let currentTicket = JSON.parse(sessionStorage.getItem("current_ticket")) || null
 let refreshInterval = null;
 let allQueues = [];
 
+let notificationTracker = {
+  fiveAway: false,
+  twoAway: false,
+  nextCalled: false,
+  completed: false
+};
+
+function requestNotificationPermission() {
+  if ("Notification" in window) {
+    if (Notification.permission === "default") {
+      Notification.requestPermission().then(permission => {
+        if (permission === "granted") {
+          showToast("Notifications enabled!", "success");
+        }
+      });
+    }
+  }
+}
+
+function sendSystemNotification(title, message) {
+  if ("Notification" in window && Notification.permission === "granted") {
+    try {
+      new Notification(title, {
+        body: message,
+        icon: "data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>"
+      });
+    } catch (err) {
+      console.warn("Failed to display system notification:", err);
+    }
+  }
+}
+
 function showToast(message, type = "info") {
   const toast = document.createElement("div");
   toast.className = `toast toast-${type}`;
@@ -276,6 +308,14 @@ async function joinQueueById(queueId, btn) {
     };
     sessionStorage.setItem("current_ticket", JSON.stringify(currentTicket));
     
+    // Reset notification tracker
+    notificationTracker = {
+      fiveAway: false,
+      twoAway: false,
+      nextCalled: false,
+      completed: false
+    };
+
     showToast(`Welcome! Your ticket is ${result.ticket.ticket_number}`, "success");
     closeServiceModal();
     displayCurrentTicket();
@@ -394,20 +434,43 @@ async function refreshPosition() {
       stepNear.classList.add("active");
       stepCalled.classList.add("active");
       proximityAlert.classList.remove("hidden");
-      proximityAlert.querySelector(".alert-text").textContent = "🔔 Your turn! Please proceed to the service counter immediately.";
-      showToast("🔔 Ticket " + currentTicket.ticket_number + " is NOW SERVING! Please proceed to counter.", "info");
+      
+      const counterName = currentTicket.service || "Counter";
+      proximityAlert.querySelector(".alert-text").textContent = `🚨 You are next. Please proceed to ${counterName}.`;
+      
+      if (!notificationTracker.nextCalled) {
+        sendSystemNotification("QueueLess Alert", `🚨 You are next. Please proceed to ${counterName}.`);
+        notificationTracker.nextCalled = true;
+      }
+
+      showToast(`🚨 Ticket ${currentTicket.ticket_number} is NOW SERVING! Please proceed to counter.`, "info");
       playNotificationSound();
     } else if (result.position.status === "waiting") {
       currentTicketStatus.textContent = "Status: Waiting";
-      if (pos !== undefined && pos <= 2) {
-        stepNear.classList.add("active");
-        proximityAlert.classList.remove("hidden");
-        proximityAlert.querySelector(".alert-text").textContent = `🔔 Your turn is near! Only ${pos} people ahead of you. Start heading back!`;
-        playNotificationSound();
+      if (pos !== undefined) {
+        if (pos === 5 && !notificationTracker.fiveAway) {
+          sendSystemNotification("QueueLess Update", "🔔 You are 5 people away.");
+          notificationTracker.fiveAway = true;
+        } else if (pos === 2 && !notificationTracker.twoAway) {
+          sendSystemNotification("QueueLess Update", "🔔 You are 2 people away.");
+          notificationTracker.twoAway = true;
+        }
+
+        if (pos <= 2) {
+          stepNear.classList.add("active");
+          proximityAlert.classList.remove("hidden");
+          proximityAlert.querySelector(".alert-text").textContent = `🔔 Your turn is near! Only ${pos} people ahead of you. Start heading back!`;
+          playNotificationSound();
+        }
       }
     } else {
       currentTicketStatus.textContent = `Status: ${result.position.status}`;
       if (result.position.status === "served") {
+        if (!notificationTracker.completed) {
+          sendSystemNotification("QueueLess Status", "✅ Your service has been completed.");
+          notificationTracker.completed = true;
+        }
+
         showToast("You have been served. Thank you!", "success");
         sessionStorage.removeItem("current_ticket");
         currentTicket = null;
@@ -451,6 +514,7 @@ categoryCards.forEach(card => {
 
 // Initialize dashboard page
 async function init() {
+  requestNotificationPermission();
   await fetchAndSetupDiscovery();
   displayCurrentTicket();
   loadSuggestions();
