@@ -4,7 +4,7 @@ const registerForm = document.getElementById("register-form");
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
 const passwordInput = document.getElementById("password");
-const confirmPasswordInput = document.getElementById("confirm-password");
+// confirm password removed from UI
 const registerBtn = document.getElementById("register-btn");
 const errorMessage = document.getElementById("error-message");
 const toastContainer = document.getElementById("toast-container");
@@ -30,15 +30,8 @@ registerForm.addEventListener("submit", async (event) => {
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
   const password = passwordInput.value.trim();
-  const confirmPassword = confirmPasswordInput.value.trim();
-
-  if (!name || !email || !password || !confirmPassword) {
+  if (!name || !email || !password) {
     showAuthError("Please fill in all fields.", errorMessage);
-    return;
-  }
-
-  if (password !== confirmPassword) {
-    showAuthError("Passwords do not match.", errorMessage);
     return;
   }
 
