@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QueueLess — Skip the Line</title>
-    <link rel="stylesheet" href="style.css?v=4">
+    <link rel="stylesheet" href="style.css?v=5">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 
@@ -34,22 +34,27 @@
     <main class="container">
 
         <!-- Hero Section (for unauthenticated users) -->
-        <section id="hero-section" class="hero">
-            <div class="hero-badge">
-                <span class="dot"></span>
-                Digital Queue System
+        <section id="hero-section" class="hero two-column">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Digital Queue System
+                </div>
+                <h1>
+                    Skip the line.<br>
+                    Take back your <span class="highlight">time</span>.
+                </h1>
+                <p class="description">
+                    Join queues remotely, track your position in real time, and know exactly when it's your turn.
+                </p>
+                <div class="hero-buttons">
+                    <a href="register.html" class="btn-primary">Join a Queue</a>
+                    <a href="register.html?type=business" class="btn-secondary">I'm a Business</a>
+                </div>
             </div>
-            <h1>
-                Stop waiting.<br>
-                Start <span class="highlight">living</span>.
-            </h1>
-            <p class="description">
-                Join a queue online and track your position in real-time.
-                No more standing in lines.
-            </p>
-            <div style="margin-top: 32px; display: flex; gap: 16px; justify-content: center;">
-                <a href="login.html" class="btn-primary">Sign In</a>
-                <a href="register.html" class="btn-secondary">Create Account</a>
+            <div class="hero-graphic">
+                <div class="graphic-glow"></div>
+                <img src="phone_mockup.png" alt="QueueLess Virtual Ticket" class="floating-phone">
             </div>
         </section>
 
