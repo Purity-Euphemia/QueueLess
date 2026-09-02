@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>QueueLess — Skip the Line</title>
-    <link rel="stylesheet" href="style.css?v=5">
+    <link rel="stylesheet" href="home.css?v=1">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
 </head>
 
@@ -13,101 +13,256 @@
 
     <!-- Navigation -->
     <nav class="navbar">
-        <a href="index.html" class="navbar-brand">Queue<span>Less</span></a>
-        <div class="navbar-links">
-            <a href="index.html" class="active">Home</a>
-            <a href="#how-it-works">How It Works</a>
-            <a href="#features">Features</a>
-            <a href="#for-businesses">For Businesses</a>
-            <a href="#help">Help</a>
+        <div class="container">
+            <a href="index.html" class="navbar-brand">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="10"></circle>
+                    <polyline points="12 6 12 12 16 14"></polyline>
+                </svg>
+                QueueLess
+            </a>
+            <div class="navbar-links">
+                <a href="#home" class="active">Home</a>
+                <a href="#how-it-works">How it Works</a>
+                <a href="#features">Features</a>
+                <a href="#business">For Businesses</a>
+                <a href="#help">Help</a>
+            </div>
             
-            <a id="nav-dashboard" href="dashboard.html" class="hidden">Dashboard</a>
-            <a id="nav-history" href="queue-history.html" class="hidden">History</a>
-            <a id="nav-profile" href="profile.html" class="hidden">Profile</a>
-            <a id="nav-admin" href="admin-dashboard.html" class="hidden">Admin</a>
-            <a id="nav-login" href="login.html">Login</a>
-            <a id="nav-register" href="register.html">Register</a>
-            <a id="nav-logout" href="#" class="hidden">Logout</a>
+            <div class="navbar-auth">
+                <a id="nav-dashboard" href="dashboard.html" class="btn btn-ghost hidden">Dashboard</a>
+                <a id="nav-history" href="queue-history.html" class="hidden">History</a>
+                <a id="nav-profile" href="profile.html" class="hidden">Profile</a>
+                <a id="nav-admin" href="admin-dashboard.html" class="hidden">Admin</a>
+                
+                <a id="nav-login" href="login.html" class="btn btn-ghost">Log In</a>
+                <a id="nav-register" href="register.html" class="btn btn-primary">Get Started</a>
+                <a id="nav-logout" href="#" class="btn btn-ghost hidden">Logout</a>
+            </div>
         </div>
     </nav>
 
-    <main class="container">
+    <!-- Welcome Section (for authenticated users) -->
+    <section id="welcome-section" class="container hidden" style="padding-top: 40px; text-align: center;">
+        <h1 style="font-size: 32px; font-weight: 700;">Welcome back, <span id="user-name" class="text-primary">User</span>!</h1>
+        <p style="color: var(--text-muted); margin-bottom: 24px;">Manage your queues and check your status below.</p>
+        
+        <div style="display: flex; gap: 24px; justify-content: center; margin-bottom: 32px;">
+            <div style="background: var(--bg-light); padding: 24px; border-radius: 16px; min-width: 200px;">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Active Ticket</span>
+                <div id="active-ticket-status" style="font-size: 24px; font-weight: 800; color: var(--primary); margin-top: 8px;">None</div>
+            </div>
+            <div style="background: var(--bg-light); padding: 24px; border-radius: 16px; min-width: 200px;">
+                <span style="font-size: 12px; font-weight: 700; color: var(--text-muted); text-transform: uppercase;">Total Visits</span>
+                <div id="total-visits" style="font-size: 24px; font-weight: 800; color: var(--text-main); margin-top: 8px;">0</div>
+            </div>
+        </div>
+        <a href="dashboard.html" class="btn btn-primary">Go to Dashboard</a>
+    </section>
 
-        <!-- Hero Section (for unauthenticated users) -->
-        <section id="hero-section" class="hero two-column">
+    <!-- Hero Section -->
+    <section id="hero-section" class="hero">
+        <div class="container hero-grid">
             <div class="hero-content">
                 <div class="hero-badge">
-                    <span class="dot"></span>
-                    Digital Queue System
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14"></path><path d="M12 5l7 7-7 7"></path></svg>
+                    Skip the queue. Save your time.
                 </div>
                 <h1>
-                    Skip the line.<br>
-                    Take back your <span class="highlight">time</span>.
+                    Skip the Queue.<br>
+                    <span class="text-primary">Save Your Time.</span>
                 </h1>
                 <p class="description">
-                    Join queues remotely, track your position in real time, and know exactly when it's your turn.
+                    Join queues remotely, track your position in real time, and get notified when it's your turn.
                 </p>
                 <div class="hero-buttons">
-                    <a href="register.html" class="btn-primary">Join a Queue</a>
-                    <a href="register.html?type=business" class="btn-secondary">I'm a Business</a>
+                    <a href="register.html" class="btn btn-primary">Join a Queue &rarr;</a>
+                    <a href="#how-it-works" class="btn btn-outline">Learn More</a>
+                </div>
+                
+                <div class="social-proof">
+                    <div class="avatars">
+                        <img src="https://i.pravatar.cc/100?img=1" alt="User">
+                        <img src="https://i.pravatar.cc/100?img=2" alt="User">
+                        <img src="https://i.pravatar.cc/100?img=3" alt="User">
+                    </div>
+                    <div class="social-proof-text">
+                        <div class="stars">★★★★★</div>
+                        Trusted by 10,000+ users
+                    </div>
                 </div>
             </div>
-            <div class="hero-graphic">
-                <div class="graphic-glow"></div>
-                <img src="phone_mockup.png" alt="QueueLess Virtual Ticket" class="floating-phone">
-            </div>
-        </section>
-
-        <!-- Welcome Section (for authenticated users) -->
-        <section id="welcome-section" class="welcome-card hidden">
-            <h1>Welcome back, <span id="user-name">User</span>!</h1>
-            <p class="description">Manage your queues and check your status below.</p>
             
-            <div class="dashboard-grid">
-                <div class="stat-box">
-                    <span class="stat-label">ACTIVE TICKET</span>
-                    <span id="active-ticket-status" class="stat-value">None</span>
+            <div class="hero-graphic">
+                <img src="assets/phone-light.png" alt="QueueLess App on Phone" class="phone">
+                <div class="floating-card fc-1">
+                    <div class="icon-box" style="background: var(--bg-accent); color: var(--primary);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></div>
+                    Real-time Notifications
                 </div>
-                <div class="stat-box">
-                    <span class="stat-label">TOTAL VISITS</span>
-                    <span id="total-visits" class="stat-value">0</span>
+                <div class="floating-card fc-2">
+                    <div class="icon-box" style="background: var(--success-light); color: var(--success);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                    Live Queue Tracking
                 </div>
             </div>
+        </div>
+    </section>
 
-            <div style="display: flex; gap: 16px; margin-top: 32px; justify-content: center;">
-                <a href="dashboard.html" class="btn-primary">Go to Dashboard</a>
-                <a href="queue-history.html" class="btn-secondary">View History</a>
+    <!-- How It Works Section -->
+    <section id="how-it-works" class="how-it-works">
+        <div class="container">
+            <h2 class="section-title">How QueueLess Works</h2>
+            <div class="steps-container">
+                <div class="step">
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"></path><polyline points="3.27 6.96 12 12.01 20.73 6.96"></polyline><line x1="12" y1="22.08" x2="12" y2="12"></line></svg>
+                        <div class="step-number">1</div>
+                    </div>
+                    <h3>Choose a Service</h3>
+                    <p>Select the service and location you want to visit.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="9" cy="7" r="4"></circle><path d="M23 21v-2a4 4 0 0 0-3-3.87"></path><path d="M16 3.13a4 4 0 0 1 0 7.75"></path></svg>
+                        <div class="step-number">2</div>
+                    </div>
+                    <h3>Join the Queue</h3>
+                    <p>Join the queue remotely and get your queue number.</p>
+                </div>
+                <div class="step">
+                    <div class="step-icon">
+                        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                        <div class="step-number">3</div>
+                    </div>
+                    <h3>Get Served</h3>
+                    <p>Track your queue in real time and get notified when it's your turn.</p>
+                </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- Live Now Serving Section -->
-        <section id="now-serving-section" class="card section-gap">
-            <div class="section-header">
-                <h2>⚡ Live Now Serving</h2>
-                <span class="live-dot-container"><span class="pulse-dot"></span> Live Updates</span>
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <h2 class="section-title">Features</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"></path><path d="M13.73 21a2 2 0 0 1-3.46 0"></path></svg></div>
+                    <h3>Real-time Notifications</h3>
+                    <p>Get notified when you're almost next so you never miss your turn.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg></div>
+                    <h3>Live Queue Tracking</h3>
+                    <p>See your real-time position and estimated waiting time.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg></div>
+                    <h3>Save Time</h3>
+                    <p>Spend your time on things that matter while we hold your place.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div>
+                    <h3>Secure & Private</h3>
+                    <p>Your data is safe with us. We prioritize your privacy and security.</p>
+                </div>
             </div>
-            <p class="subtitle">Check real-time ticket numbers currently being served across active queues</p>
-            <div id="now-serving-grid" class="now-serving-grid">
-                <p class="empty-message">Loading live queue statuses...</p>
+        </div>
+    </section>
+
+    <!-- For Businesses Banner -->
+    <section id="business" class="container">
+        <div class="business-banner">
+            <div class="business-content">
+                <h4>For Businesses</h4>
+                <h2>Serve more. Wait less.</h2>
+                <p>QueueLess helps businesses manage queues efficiently, reduce crowd congestion, and improve customer satisfaction.</p>
+                <a href="register.html?type=business" class="btn btn-primary">For Businesses &rarr;</a>
             </div>
-        </section>
+            <div class="business-image">
+                <img src="assets/business.png" alt="Business Dashboard">
+            </div>
+        </div>
+    </section>
 
-        <!-- Error Message -->
-        <p id="error-message" class="error-message hidden"></p>
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="testimonial-card">
+                <h4 style="font-weight: 700; margin-bottom: 24px;">Loved by users everywhere</h4>
+                <p class="quote">"QueueLess has completely changed the way I handle waiting. I can join the queue and do other things while I wait. Super convenient!"</p>
+                <p class="author">— Chioma E.</p>
+                <div style="margin-top: 16px; color: var(--primary);">
+                    <svg width="32" height="8" viewBox="0 0 32 8" fill="none"><circle cx="4" cy="4" r="4" fill="currentColor"/><circle cx="16" cy="4" r="4" fill="var(--border)"/><circle cx="28" cy="4" r="4" fill="var(--border)"/></svg>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <!-- Now Serving fallback (hidden by default for structure consistency) -->
+    <section id="now-serving-section" class="hidden"></section>
 
-    </main>
-
-    <!-- Toast Container -->
-    <div id="toast-container" class="toast-container"></div>
+    <!-- Error Message -->
+    <p id="error-message" class="error-message hidden"></p>
+    <div id="toast-container" class="toast-container hidden"></div>
 
     <!-- Footer -->
     <footer class="footer">
-        QueueLess — Digital Queue Management System
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <div class="navbar-brand">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 6 12 12 16 14"></polyline></svg>
+                        QueueLess
+                    </div>
+                    <p>Skip the queue. Save your time. QueueLess helps you join queues remotely, track in real time and get notified.</p>
+                    <div class="footer-socials">
+                        <span>f</span> <span>t</span> <span>in</span> <span>ig</span>
+                    </div>
+                </div>
+                <div class="footer-col">
+                    <h4>Product</h4>
+                    <ul>
+                        <li><a href="#">Features</a></li>
+                        <li><a href="#">How it Works</a></li>
+                        <li><a href="#">Pricing</a></li>
+                        <li><a href="#">Updates</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Company</h4>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">For Businesses</a></li>
+                        <li><a href="#">Careers</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Support</h4>
+                    <ul>
+                        <li><a href="#">Help Center</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                    </ul>
+                </div>
+                <div class="footer-col">
+                    <h4>Stay updated</h4>
+                    <p style="color: var(--text-muted); font-size: 14px; margin-bottom: 12px;">Subscribe to receive updates and new features.</p>
+                    <div class="newsletter" style="display: flex; gap: 8px;">
+                        <input type="email" placeholder="Enter your email">
+                        <button class="btn btn-primary" style="padding: 10px 16px;"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg></button>
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                &copy; 2026 QueueLess. All rights reserved.
+            </div>
+        </div>
     </footer>
 
     <script src="auth.js"></script>
     <script src="index.js"></script>
-
 </body>
 
 </html>
