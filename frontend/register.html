@@ -4,154 +4,83 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QueueLess — Create your account</title>
-    <link rel="stylesheet" href="home.css">
+    <title>QueueLess — Sign Up</title>
+    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>⚡</text></svg>">
-    <style>
-        body {
-            background: linear-gradient(135deg, var(--primary) 0%, #042F2E 100%);
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-        .auth-wrapper {
-            flex: 1;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 40px 20px;
-        }
-        .auth-card {
-            background: white;
-            padding: 48px;
-            border-radius: 24px;
-            box-shadow: var(--shadow-lg);
-            width: 100%;
-            max-width: 480px;
-            text-align: center;
-            border: 1px solid var(--border);
-        }
-        .auth-card h1 {
-            font-size: 28px;
-            font-weight: 700;
-            margin-bottom: 32px;
-            color: var(--text-main);
-        }
-        .form-group {
-            text-align: left;
-            margin-bottom: 20px;
-        }
-        .form-group label {
-            display: block;
-            font-size: 14px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            color: var(--text-main);
-        }
-        .form-group input {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid var(--border);
-            border-radius: 12px;
-            font-family: inherit;
-            font-size: 15px;
-            transition: all 0.2s;
-            background: var(--bg-light);
-        }
-        .form-group input:focus {
-            outline: none;
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px var(--bg-accent);
-            background: white;
-        }
-        .auth-btn {
-            width: 100%;
-            margin-top: 12px;
-            padding: 14px;
-            font-size: 16px;
-            border-radius: 12px;
-        }
-        .auth-footer {
-            margin-top: 24px;
-            font-size: 15px;
-            color: var(--text-muted);
-        }
-        .auth-footer a {
-            color: var(--primary);
-            font-weight: 600;
-            text-decoration: none;
-        }
-        .auth-footer a:hover {
-            text-decoration: underline;
-        }
-        .logo-center {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 12px;
-            font-size: 24px;
-            font-weight: 800;
-            letter-spacing: -0.02em;
-            color: var(--text-main);
-            margin-bottom: 12px;
-            text-decoration: none;
-        }
-        .logo-center svg {
-            width: 28px;
-            height: 28px;
-            color: var(--primary);
-        }
-    </style>
 </head>
 
 <body>
 
-    <div class="auth-wrapper">
-        <div class="auth-card">
-            
-            <a href="index.html" class="logo-center">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <circle cx="12" cy="12" r="10"></circle>
-                    <polyline points="12 6 12 12 16 14"></polyline>
-                </svg>
-                QueueLess
-            </a>
+    <nav class="navbar">
+        <a href="index.html" class="navbar-brand">Queue<span>Less</span></a>
+        <div class="navbar-links">
+            <a href="login.html">Login</a>
+            <a href="register.html" class="active">Sign Up</a>
+        </div>
+    </nav>
 
-            <h1>Create your account</h1>
+    <main class="container">
+        <section class="auth-card">
+            <h1>Create Account</h1>
+            <p class="auth-subtitle">Join QueueLess and skip the line</p>
 
             <form id="register-form">
-                <div class="form-group">
-                    <label for="name">Full Name</label>
-                    <input type="text" id="name" placeholder="John Doe" required>
-                </div>
+                <label for="name">Full Name</label>
+                <input 
+                    type="text" 
+                    id="name" 
+                    placeholder="Your full name" 
+                    required
+                >
 
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" id="email" placeholder="john@example.com" required>
-                </div>
+                <label for="email">Email</label>
+                <input 
+                    type="email" 
+                    id="email" 
+                    placeholder="your@email.com" 
+                    required
+                >
 
-                <div class="form-group">
-                    <label for="password">Password</label>
-                    <input type="password" id="password" placeholder="••••••••" required>
-                </div>
+                <label for="password">Password</label>
+                <input 
+                    type="password" 
+                    id="password" 
+                    placeholder="Create a strong password" 
+                    required
+                >
 
-                <button type="submit" class="btn btn-primary auth-btn" id="register-btn">
-                    Create Account
-                </button>
+                <label for="confirm-password">Confirm Password</label>
+                <input 
+                    type="password" 
+                    id="confirm-password" 
+                    placeholder="Confirm your password" 
+                    required
+                >
+
+                <div class="auth-actions">
+                    <button type="submit" class="btn-primary" id="register-btn">
+                        Create Account
+                    </button>
+                </div>
             </form>
 
-            <p id="error-message" class="error-message hidden" style="color: red; margin-top: 16px; font-size: 14px;"></p>
+            <p id="error-message" class="error-message hidden"></p>
 
             <div class="auth-footer">
-                Already have an account? <a href="login.html">Log In</a>
+                <p>Already have an account? <a href="login.html">Sign in here</a></p>
             </div>
-        </div>
-    </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        QueueLess — Skip the Line
+    </footer>
 
     <div id="toast-container" class="toast-container"></div>
 
-    <script src="auth.js?v=2"></script>
-    <script src="register.js?v=2"></script>
+    <script src="auth.js"></script>
+    <script src="register.js"></script>
 
 </body>
+
 </html>

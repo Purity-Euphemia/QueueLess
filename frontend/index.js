@@ -10,34 +10,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.getElementById('nav-login').classList.add('hidden');
         document.getElementById('nav-register').classList.add('hidden');
         document.getElementById('nav-logout').classList.remove('hidden');
-        document.getElementById('nav-dashboard').classList.remove('hidden');
-        document.getElementById('nav-history').classList.remove('hidden');
-        document.getElementById('nav-profile').classList.remove('hidden');
         
-        // Show admin link if user is admin
-        if (user.role === 'admin') {
-            document.getElementById('nav-admin').classList.remove('hidden');
-        }
-        
-        // Show welcome section, hide hero
-        document.getElementById('hero-section').classList.add('hidden');
-        document.getElementById('welcome-section').classList.remove('hidden');
-        
-        // Load user data
-        await loadUserData(user);
     } else {
         // User is not logged in
         document.getElementById('nav-logout').classList.add('hidden');
-        document.getElementById('nav-dashboard').classList.add('hidden');
-        document.getElementById('nav-history').classList.add('hidden');
-        document.getElementById('nav-profile').classList.add('hidden');
-        document.getElementById('nav-admin').classList.add('hidden');
         document.getElementById('nav-login').classList.remove('hidden');
         document.getElementById('nav-register').classList.remove('hidden');
-        
-        // Show hero section
-        document.getElementById('hero-section').classList.remove('hidden');
-        document.getElementById('welcome-section').classList.add('hidden');
     }
     
     // Setup logout button
