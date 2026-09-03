@@ -2105,7 +2105,7 @@ body.split-body {
     display: flex;
     align-items: center;
     text-decoration: none;
-    font-size: 24px;
+    font-size: 28px;
     font-weight: 800;
     color: #0f172a;
 }
@@ -2419,9 +2419,9 @@ body.split-body {
 
 .split-illustration {
     position: absolute;
-    bottom: -40px;
+    bottom: -20px;
     right: -40px;
-    width: 450px;
+    width: 500px;
     height: auto;
     object-fit: contain;
     transform: rotate(8deg);
