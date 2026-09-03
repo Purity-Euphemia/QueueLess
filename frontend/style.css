@@ -1734,3 +1734,720 @@ body.light-theme .footer {
     background: transparent;
 }
 
+/* ===========================================
+   Figma Create Account Page Redesign
+   =========================================== */
+body.figma-bg {
+    background-color: #f8f9fc !important;
+    background-image: none !important;
+}
+
+.figma-auth-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 40px 20px;
+    box-sizing: border-box;
+}
+
+.figma-auth-card {
+    background: #ffffff;
+    border-radius: 24px;
+    width: 100%;
+    max-width: 650px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.05);
+    padding: 40px 50px 60px 50px;
+    position: relative;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* Header */
+.figma-auth-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 40px;
+}
+
+.figma-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 22px;
+    font-weight: 800;
+    color: #111827;
+}
+
+.figma-logo-icon {
+    width: 32px;
+    height: 32px;
+    background: #3b82f6;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 700;
+    margin-right: 10px;
+    font-size: 18px;
+}
+
+.figma-login-link {
+    font-size: 14px;
+    color: #4b5563;
+}
+.figma-login-link a {
+    color: #3b82f6;
+    font-weight: 600;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+/* Top Title & Illustration */
+.figma-auth-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 30px;
+}
+
+.figma-auth-text h1 {
+    font-size: 28px;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 12px;
+}
+
+.figma-auth-text p {
+    font-size: 14px;
+    color: #4b5563;
+    line-height: 1.5;
+    max-width: 250px;
+}
+
+.figma-auth-illustration {
+    flex-shrink: 0;
+}
+
+.figma-auth-illustration img {
+    height: 160px;
+    object-fit: contain;
+}
+
+/* Form Inputs */
+.figma-auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    position: relative;
+    z-index: 10;
+}
+
+.figma-input-wrapper {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 10px 16px;
+    background: #ffffff;
+    transition: all 0.2s ease;
+}
+
+.figma-input-wrapper:focus-within {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.figma-input-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    color: #6b7280;
+    margin-right: 16px;
+}
+.figma-input-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.figma-input-content {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.figma-input-content label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #374151;
+    margin-bottom: 4px;
+}
+
+.figma-input-content input {
+    border: none;
+    outline: none;
+    font-size: 14px;
+    color: #111827;
+    background: transparent;
+    padding: 0;
+    width: 100%;
+}
+.figma-input-content input::placeholder {
+    color: #9ca3af;
+}
+
+.figma-input-action {
+    color: #6b7280;
+    cursor: pointer;
+    margin-left: 12px;
+}
+.figma-input-action svg {
+    width: 20px;
+    height: 20px;
+}
+
+/* Terms Checkbox */
+.figma-terms {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #4b5563;
+    position: relative;
+    cursor: pointer;
+}
+.checkbox-container input {
+    margin-right: 12px;
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+    accent-color: #3b82f6;
+}
+.checkbox-container a {
+    color: #3b82f6;
+    text-decoration: none;
+    font-weight: 500;
+}
+
+/* Primary Button */
+.figma-btn-primary {
+    background-color: #4f46e5;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    margin-top: 10px;
+    box-shadow: 0 4px 14px rgba(79, 70, 229, 0.3);
+}
+
+.figma-btn-primary:hover {
+    background-color: #4338ca;
+    transform: translateY(-1px);
+}
+
+/* Divider */
+.figma-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+    color: #6b7280;
+    font-size: 13px;
+}
+.figma-divider::before,
+.figma-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e5e7eb;
+}
+.figma-divider span {
+    padding: 0 16px;
+}
+
+/* Social Buttons */
+.figma-social-buttons {
+    display: flex;
+    gap: 16px;
+}
+
+.figma-btn-social {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 12px;
+    font-size: 13px;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.figma-btn-social:hover {
+    background: #f9fafb;
+    border-color: #d1d5db;
+}
+
+.figma-btn-social img,
+.figma-btn-social svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Skyline Bottom Graphic */
+.figma-skyline {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 100px;
+    background: url('data:image/svg+xml;utf8,<svg viewBox="0 0 1000 200" xmlns="http://www.w3.org/2000/svg"><path fill="%23f3e8ff" opacity="0.6" d="M0,200 L0,150 L20,150 L20,100 L50,100 L50,130 L70,130 L70,80 L100,80 L100,120 L130,120 L130,70 L150,70 L150,140 L180,140 L180,90 L210,90 L210,130 L230,130 L230,60 L260,60 L260,110 L290,110 L290,50 L320,50 L320,120 L350,120 L350,80 L380,80 L380,130 L410,130 L410,70 L440,70 L440,110 L470,110 L470,90 L500,90 L500,140 L530,140 L530,100 L560,100 L560,80 L590,80 L590,130 L620,130 L620,60 L650,60 L650,120 L680,120 L680,70 L710,70 L710,140 L740,140 L740,90 L770,90 L770,110 L800,110 L800,80 L830,80 L830,130 L860,130 L860,70 L890,70 L890,120 L920,120 L920,50 L950,50 L950,140 L980,140 L980,100 L1000,100 L1000,200 Z" /><path fill="%23e9d5ff" opacity="0.4" d="M0,200 L0,120 L30,120 L30,80 L60,80 L60,140 L90,140 L90,90 L120,90 L120,130 L150,130 L150,70 L180,70 L180,150 L210,150 L210,100 L240,100 L240,80 L270,80 L270,140 L300,140 L300,60 L330,60 L330,120 L360,120 L360,90 L390,90 L390,140 L420,140 L420,100 L450,100 L450,70 L480,70 L480,130 L510,130 L510,80 L540,80 L540,150 L570,150 L570,110 L600,110 L600,90 L630,90 L630,130 L660,130 L660,70 L690,70 L690,120 L720,120 L720,80 L750,80 L750,140 L780,140 L780,60 L810,60 L810,110 L840,110 L840,90 L870,90 L870,150 L900,150 L900,100 L930,100 L930,70 L960,70 L960,130 L990,130 L990,90 L1000,90 L1000,200 Z" /><circle cx="200" cy="50" r="15" fill="%23e9d5ff" opacity="0.5"/><path fill="%23d8b4fe" d="M200,65 L190,50 L210,50 Z" /><circle cx="600" cy="40" r="10" fill="%23e9d5ff" opacity="0.5"/><path fill="%23d8b4fe" d="M600,50 L593,40 L607,40 Z" /></svg>');
+    background-size: cover;
+    background-position: bottom;
+    background-repeat: no-repeat;
+    pointer-events: none;
+    z-index: 1;
+}
+
+@media (max-width: 640px) {
+    .figma-auth-card {
+        padding: 30px 20px;
+    }
+    .figma-auth-top {
+        flex-direction: column;
+        text-align: center;
+    }
+    .figma-auth-text p {
+        margin: 0 auto;
+    }
+    .figma-auth-illustration img {
+        height: 120px;
+        margin-top: 20px;
+    }
+    .figma-social-buttons {
+        flex-direction: column;
+    }
+}
+
+/* ===========================================
+   Split-Screen Figma Design
+   =========================================== */
+body.split-body {
+    background: #f1f5f9 !important;
+    margin: 0;
+    padding: 20px;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.split-layout-container {
+    display: flex;
+    width: 100%;
+    max-width: 1200px;
+    min-height: 85vh;
+    background: #ffffff;
+    border-radius: 24px;
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+    overflow: hidden;
+}
+
+.split-left {
+    flex: 6; /* 60% of the screen */
+    display: flex;
+    flex-direction: column;
+    padding: 60px 80px;
+    background: #ffffff;
+    align-items: center; /* Center the content area */
+}
+
+.split-auth-content {
+    width: 100%;
+    max-width: 500px; /* Keep form at a readable width */
+    margin: 0 auto;
+}
+
+.split-right {
+    flex: 3; /* 33% of the screen */
+    background: #eef8f6;
+    position: relative;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    overflow: hidden;
+}
+
+.split-header {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto 50px auto;
+}
+
+.split-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    font-size: 24px;
+    font-weight: 800;
+    color: #0f172a;
+}
+
+.split-logo span {
+    color: #0d9488;
+}
+
+.split-logo-icon-svg {
+    margin-right: 12px;
+}
+
+.split-auth-content h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #0f172a;
+    margin-bottom: 8px;
+}
+
+.split-subtitle {
+    font-size: 15px;
+    color: #64748b;
+    margin-bottom: 40px;
+}
+
+.split-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 100%;
+}
+
+.split-input-group {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 10px 16px;
+    transition: all 0.2s ease;
+    background: #ffffff;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.split-input-group:focus-within {
+    border-color: #0d9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.1);
+}
+
+.split-input-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 24px;
+    color: #64748b;
+    margin-right: 16px;
+}
+
+.split-input-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.split-input-field {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.split-input-field label {
+    font-size: 11px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.split-input-field input {
+    border: none !important;
+    outline: none !important;
+    font-size: 14px !important;
+    color: #0f172a !important;
+    background: transparent !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    border-radius: 0 !important;
+    width: 100% !important;
+}
+
+.split-input-field input::placeholder {
+    color: #94a3b8;
+}
+
+.split-input-action {
+    color: #64748b;
+    cursor: pointer;
+    margin-left: 12px;
+}
+
+.split-input-action svg {
+    width: 20px;
+    height: 20px;
+}
+
+.split-terms {
+    margin: 12px 0;
+}
+
+.split-checkbox-container {
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    color: #64748b;
+    cursor: pointer;
+}
+
+.split-checkbox-container input {
+    display: none;
+}
+
+.split-checkmark {
+    width: 18px;
+    height: 18px;
+    border: 1.5px solid #0d9488;
+    background: #0d9488;
+    border-radius: 4px;
+    margin-right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.split-checkmark svg {
+    width: 12px;
+    height: 12px;
+}
+
+.split-checkbox-container input:not(:checked) + .split-checkmark {
+    background: transparent;
+    border-color: #cbd5e1;
+}
+
+.split-checkbox-container input:not(:checked) + .split-checkmark svg {
+    display: none;
+}
+
+.split-checkbox-container a {
+    color: #0d9488;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.split-btn-primary {
+    background-color: #0d9488;
+    color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    box-shadow: 0 4px 12px rgba(13, 148, 136, 0.2);
+}
+
+.split-btn-primary:hover {
+    background-color: #0f766e;
+    transform: translateY(-1px);
+}
+
+.split-btn-primary svg {
+    width: 20px;
+    height: 20px;
+}
+
+.split-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 24px 0;
+    color: #94a3b8;
+    font-size: 13px;
+}
+
+.split-divider::before,
+.split-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #e2e8f0;
+}
+
+.split-divider span {
+    padding: 0 16px;
+}
+
+.split-socials {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.split-btn-social {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 12px;
+    padding: 14px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #0f172a;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.split-btn-social:hover {
+    background: #f8fafc;
+    border-color: #cbd5e1;
+}
+
+.split-btn-social img,
+.split-btn-social svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Right Panel Elements */
+.split-login-link {
+    position: absolute;
+    top: 50px; /* Adjusted to perfectly align with the logo horizontally */
+    right: 80px;
+    font-size: 15px;
+    font-weight: 700;
+    color: #64748b;
+    z-index: 10;
+}
+
+.split-login-link a {
+    color: #0d9488;
+    font-weight: 700;
+    text-decoration: none;
+    margin-left: 6px;
+}
+
+.split-benefits-container {
+    width: 100%;
+    max-width: 320px;
+    margin-top: 100px; /* Increased to give space before Why join QueueLess */
+    z-index: 10;
+}
+
+.split-benefits-title {
+    font-size: 18px;
+    font-weight: 800;
+    color: #0d9488;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.split-benefits-title svg {
+    width: 20px;
+    height: 20px;
+}
+
+.split-benefit {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 32px;
+}
+
+.split-benefit-icon {
+    background: #ffffff;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0d9488;
+    box-shadow: 0 4px 10px rgba(13, 148, 136, 0.1);
+    flex-shrink: 0;
+}
+
+.split-benefit-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.split-benefit-text h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #0f172a;
+    margin-bottom: 4px;
+}
+
+.split-benefit-text p {
+    font-size: 14px;
+    color: #64748b;
+    line-height: 1.5;
+}
+
+.split-illustration {
+    position: absolute;
+    bottom: -40px;
+    right: -40px;
+    width: 450px;
+    height: auto;
+    object-fit: contain;
+    transform: rotate(8deg);
+    mix-blend-mode: multiply;
+    z-index: 1;
+}
+
+@media (max-width: 900px) {
+    .split-layout-container {
+        flex-direction: column;
+    }
+    .split-left {
+        max-width: 100%;
+        padding: 40px 20px;
+    }
+    .split-right {
+        padding: 40px 20px 200px 20px;
+    }
+    .split-login-link {
+        top: 20px;
+        right: 20px;
+    }
+    .split-illustration {
+        height: 300px;
+        bottom: -20px;
+        right: -20px;
+    }
+}
+

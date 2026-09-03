@@ -3,6 +3,7 @@ requireNoAuth();
 const registerForm = document.getElementById("register-form");
 const nameInput = document.getElementById("name");
 const emailInput = document.getElementById("email");
+const phoneInput = document.getElementById("phone");
 const passwordInput = document.getElementById("password");
 const confirmPasswordInput = document.getElementById("confirm-password");
 const registerBtn = document.getElementById("register-btn");
@@ -29,10 +30,11 @@ registerForm.addEventListener("submit", async (event) => {
 
   const name = nameInput.value.trim();
   const email = emailInput.value.trim();
+  const phone = phoneInput ? phoneInput.value.trim() : "";
   const password = passwordInput.value.trim();
   const confirmPassword = confirmPasswordInput.value.trim();
 
-  if (!name || !email || !password || !confirmPassword) {
+  if (!name || !email || !password || !confirmPassword || (phoneInput && !phone)) {
     showAuthError("Please fill in all fields.", errorMessage);
     return;
   }
@@ -50,7 +52,7 @@ registerForm.addEventListener("submit", async (event) => {
   registerBtn.disabled = true;
   registerBtn.innerHTML = '<span class="spinner"></span> Creating account...';
 
-  const result = await register(name, email, password);
+  const result = await register(name, email, password, phone);
 
   if (result.success) {
     showToast("Account created! Redirecting to dashboard...", "success");

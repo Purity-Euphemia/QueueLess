@@ -4,19 +4,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     const token = getToken();
     const user = getUser();
     
-    // Update navigation based on auth state
-    if (token && user) {
-        // User is logged in
-        document.getElementById('nav-login').classList.add('hidden');
-        document.getElementById('nav-register').classList.add('hidden');
-        document.getElementById('nav-logout').classList.remove('hidden');
-        
-    } else {
-        // User is not logged in
-        document.getElementById('nav-logout').classList.add('hidden');
-        document.getElementById('nav-login').classList.remove('hidden');
-        document.getElementById('nav-register').classList.remove('hidden');
-    }
+    // The user requested to ALWAYS show "Log In" and "Get Started"
+    // regardless of whether they are logged in or not.
+    document.getElementById('nav-dashboard').classList.add('hidden');
+    document.getElementById('nav-logout').classList.add('hidden');
+    document.getElementById('nav-login').classList.remove('hidden');
+    document.getElementById('nav-register').classList.remove('hidden');
     
     // Setup logout button
     document.getElementById('nav-logout').addEventListener('click', (e) => {
