@@ -162,11 +162,13 @@ body::after {
     gap: 8px;
     padding: 6px 18px;
     border-radius: 100px;
-    background: rgba(37, 99, 235, 0.12);
-    border: 1px solid rgba(37, 99, 235, 0.25);
-    color: #93C5FD;
+    background-color: rgba(255, 255, 255, 0.6);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    color: #0f766e;
     font-size: 13px;
-    font-weight: 500;
+    font-weight: 700;
     margin-bottom: 28px;
     animation: fadeInDown 0.6s ease;
 }
@@ -1643,4 +1645,92 @@ button:hover::after,
     box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
 }
 
+/* ============================================
+   Light Theme Overrides (For Auth Pages)
+   ============================================ */
+body.light-theme {
+    background: linear-gradient(135deg, #eefcdd 0%, #9ae8c1 100%);
+    background-attachment: fixed;
+    color: #1f2937;
+}
+
+body.light-theme::before,
+body.light-theme::after {
+    display: none; /* Hide dark mode blobs */
+}
+
+body.light-theme .navbar {
+    background: transparent;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+}
+
+body.light-theme .navbar-brand {
+    color: #0f766e;
+}
+
+body.light-theme .navbar-links a {
+    color: #374151;
+}
+
+body.light-theme .navbar-links a:hover,
+body.light-theme .navbar-links a.active {
+    color: #0d9488;
+}
+
+body.light-theme .auth-card {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(24px);
+    border: 1px solid rgba(255, 255, 255, 0.8);
+    box-shadow: 0 20px 40px -10px rgba(0,0,0,0.1);
+}
+
+body.light-theme .auth-card h1 {
+    color: #0f766e;
+}
+
+body.light-theme .auth-subtitle {
+    color: #4b5563;
+}
+
+body.light-theme label {
+    color: #374151;
+}
+
+body.light-theme input {
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid #d1d5db;
+    color: #1f2937;
+}
+
+body.light-theme input:focus {
+    border-color: #0d9488;
+    box-shadow: 0 0 0 3px rgba(13, 148, 136, 0.2);
+}
+
+body.light-theme .btn-primary {
+    background-color: #0d9488;
+    color: white;
+}
+
+body.light-theme .btn-primary:hover {
+    background-color: #0f766e;
+}
+
+body.light-theme .auth-footer {
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+body.light-theme .auth-footer p {
+    color: #4b5563;
+}
+
+body.light-theme .auth-footer a {
+    color: #0d9488;
+}
+
+body.light-theme .footer {
+    color: #4b5563;
+    border-top: none;
+    background: transparent;
+}
 
