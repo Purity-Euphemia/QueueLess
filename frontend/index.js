@@ -126,3 +126,70 @@ async function loadUserData(user) {
     }
 }
 
+// Testimonials Carousel Logic
+const testimonials = [
+    { quote: "\"QueueLess has completely changed the way I handle waiting. I can join the queue and do other things while I wait. Super convenient!\"", author: "— Chioma E." },
+    { quote: "\"As a business owner, this app saved me so much time. My customers are happier and walk-aways have dropped by 80%.\"", author: "— David K." },
+    { quote: "\"I love being able to see exactly when it's my turn. The wait-time prediction is incredibly accurate!\"", author: "— Sarah T." },
+    { quote: "\"No more standing in the cold! I just scan the QR code and wait in my car until they notify me.\"", author: "— Michael R." }
+];
+
+let currentTestimonialIndex = 0;
+
+function updateTestimonial() {
+    const quoteEl = document.getElementById('testim-quote');
+    const authorEl = document.getElementById('testim-author');
+    const dotsContainer = document.getElementById('testim-dots');
+    
+    if (!quoteEl || !authorEl || !dotsContainer) return;
+
+    quoteEl.textContent = testimonials[currentTestimonialIndex].quote;
+    authorEl.textContent = testimonials[currentTestimonialIndex].author;
+    
+    // Update dots
+    const dots = dotsContainer.querySelectorAll('svg circle');
+    dots.forEach((dot, index) => {
+        if (index === currentTestimonialIndex) {
+            dot.setAttribute('fill', 'currentColor');
+        } else {
+            dot.setAttribute('fill', 'var(--border)');
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    const prevBtn = document.getElementById('testim-prev');
+    const nextBtn = document.getElementById('testim-next');
+    let autoPlayInterval;
+    
+    function startAutoPlay() {
+        stopAutoPlay();
+        autoPlayInterval = setInterval(() => {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            updateTestimonial();
+        }, 5000); // 5 seconds
+    }
+    
+    function stopAutoPlay() {
+        if (autoPlayInterval) clearInterval(autoPlayInterval);
+    }
+    
+    if (prevBtn) {
+        prevBtn.addEventListener('click', () => {
+            currentTestimonialIndex = (currentTestimonialIndex - 1 + testimonials.length) % testimonials.length;
+            updateTestimonial();
+            startAutoPlay(); // Reset timer on manual click
+        });
+    }
+    
+    if (nextBtn) {
+        nextBtn.addEventListener('click', () => {
+            currentTestimonialIndex = (currentTestimonialIndex + 1) % testimonials.length;
+            updateTestimonial();
+            startAutoPlay(); // Reset timer on manual click
+        });
+    }
+    
+    // Start automatically
+    startAutoPlay();
+});

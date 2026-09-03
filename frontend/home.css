@@ -27,7 +27,8 @@ html { scroll-behavior: smooth; }
 
 body {
     font-family: 'Inter', sans-serif;
-    background-color: var(--bg-white);
+    background: linear-gradient(135deg, #eefcdd 0%, #9ae8c1 100%);
+    background-attachment: fixed;
     color: var(--text-main);
     line-height: 1.5;
 }
@@ -95,7 +96,7 @@ a {
 /* Navbar */
 .navbar {
     padding: 20px 0;
-    background-color: var(--bg-white);
+    background-color: transparent;
     border-bottom: 1px solid var(--border);
     position: sticky;
     top: 0;
@@ -144,7 +145,7 @@ a {
 /* Hero Section */
 .hero {
     padding: 80px 0;
-    background: radial-gradient(circle at 80% 50%, var(--bg-accent) 0%, var(--bg-white) 50%);
+    background: transparent;
 }
 
 .hero-grid {
@@ -472,7 +473,7 @@ a {
     margin: 40px auto 80px;
 }
 .cta-banner {
-    background-color: #ccfbf1; /* More distinct mint/teal */
+    background-color: #ccfbf1;
     border-radius: 16px;
     padding: 32px 48px;
     display: flex;
