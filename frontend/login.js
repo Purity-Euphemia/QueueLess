@@ -49,3 +49,33 @@ loginForm.addEventListener("submit", async (event) => {
     loginBtn.innerHTML = "Sign In";
   }
 });
+
+// Password visibility toggle
+function setupPasswordToggle(inputId) {
+    const input = document.getElementById(inputId);
+    if (!input) return;
+    
+    // Find the icon container (could be a sibling or inside a parent)
+    let actionIcon = input.parentElement.nextElementSibling;
+    if (!actionIcon || (!actionIcon.classList.contains('split-input-action') && !actionIcon.classList.contains('eye-icon'))) {
+        // Fallback for login page structure
+        actionIcon = input.parentElement.parentElement.querySelector('.eye-icon');
+    }
+    
+    if (actionIcon) {
+        actionIcon.style.cursor = 'pointer';
+        actionIcon.addEventListener('click', () => {
+            if (input.type === 'password') {
+                input.type = 'text';
+                actionIcon.style.color = '#009688';
+            } else {
+                input.type = 'password';
+                actionIcon.style.color = '';
+            }
+        });
+    }
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+    setupPasswordToggle("password");
+});

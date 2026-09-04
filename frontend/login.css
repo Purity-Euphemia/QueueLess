@@ -1,0 +1,304 @@
+/* --- Figma Login Split Screen Layout --- */
+.split-body {
+    margin: 0;
+    padding: 0;
+    height: 100vh;
+    overflow: hidden;
+    background: #f8f9fa;
+    font-family: 'Inter', system-ui, sans-serif;
+}
+
+.login-split {
+    display: flex;
+    height: 100vh;
+    width: 100vw;
+}
+
+.login-left {
+    flex: 0 0 50%;
+    padding: 2rem 4rem;
+    display: flex;
+    flex-direction: column;
+    background: #ffffff;
+    overflow-y: auto;
+}
+
+.login-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 4rem;
+}
+
+.login-logo {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #111827;
+    text-decoration: none;
+}
+
+.login-logo svg {
+    width: 32px;
+    height: 32px;
+    color: #002B49; /* Dark blue/black for logo text/icon */
+}
+
+.signup-link {
+    font-size: 0.9rem;
+    color: #6b7280;
+}
+
+.signup-link a {
+    color: #009688;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.login-content {
+    max-width: 450px;
+    margin: auto;
+    width: 100%;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-content h1 {
+    font-size: 2.25rem;
+    font-weight: 800;
+    color: #111827;
+    margin-bottom: 0.5rem;
+}
+
+.login-content .subtitle {
+    color: #6b7280;
+    margin-bottom: 2.5rem;
+    font-size: 1rem;
+}
+
+.input-group.icon-input {
+    display: flex;
+    align-items: center;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 0.5rem 1rem;
+    margin-bottom: 1.5rem;
+    background: #ffffff;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.input-group.icon-input:focus-within {
+    border-color: #009688;
+    box-shadow: 0 0 0 3px rgba(0, 150, 136, 0.1);
+}
+
+.input-icon {
+    width: 20px;
+    height: 20px;
+    color: #9ca3af;
+    margin-right: 1rem;
+}
+
+.eye-icon {
+    width: 20px;
+    height: 20px;
+    color: #9ca3af;
+    cursor: pointer;
+    margin-left: 1rem;
+}
+
+.input-stack {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.input-stack label {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #4b5563;
+    margin-bottom: 2px;
+}
+
+.input-stack input {
+    border: none;
+    outline: none;
+    background: transparent;
+    font-size: 0.95rem;
+    color: #111827;
+    width: 100%;
+    padding: 0;
+}
+
+.input-stack input::placeholder {
+    color: #9ca3af;
+}
+
+.form-actions {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+    font-size: 0.9rem;
+}
+
+.checkbox-container {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #4b5563;
+    cursor: pointer;
+}
+
+.checkbox-container input {
+    accent-color: #009688;
+    width: 16px;
+    height: 16px;
+}
+
+.forgot-pwd {
+    color: #009688;
+    font-weight: 600;
+    text-decoration: none;
+}
+
+.btn-teal {
+    background: #009688;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.5rem;
+    transition: background 0.2s;
+}
+
+.btn-teal:hover {
+    background: #00796B;
+}
+
+.btn-teal svg {
+    width: 18px;
+    height: 18px;
+}
+
+.btn-block {
+    width: 100%;
+}
+
+.divider {
+    text-align: center;
+    margin: 2rem 0;
+    position: relative;
+}
+
+.divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e5e7eb;
+    z-index: 1;
+}
+
+.divider span {
+    background: #ffffff;
+    padding: 0 1rem;
+    color: #6b7280;
+    font-size: 0.85rem;
+    position: relative;
+    z-index: 2;
+}
+
+.btn-sso {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0.75rem;
+    width: 100%;
+    padding: 0.875rem;
+    background: #ffffff;
+    border: 1px solid #e5e7eb;
+    border-radius: 8px;
+    font-size: 0.95rem;
+    font-weight: 600;
+    color: #374151;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    transition: background 0.2s;
+}
+
+.btn-sso:hover {
+    background: #f9fafb;
+}
+
+.btn-sso svg {
+    width: 20px;
+    height: 20px;
+}
+
+.login-privacy {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-top: 2rem;
+    padding-top: 2rem;
+}
+
+.shield-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background: #e6f7f5;
+    color: #009688;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-shrink: 0;
+}
+
+.shield-icon svg {
+    width: 20px;
+    height: 20px;
+}
+
+.login-privacy p {
+    font-size: 0.8rem;
+    color: #6b7280;
+    line-height: 1.4;
+    margin: 0;
+}
+
+.login-right {
+    flex: 0 0 50%;
+    background-image: url('assets/login_illustration.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: relative;
+    border-top-left-radius: 40px;
+    border-bottom-left-radius: 40px;
+    margin: 1rem 1rem 1rem 0;
+    box-shadow: -10px 0 30px rgba(0,0,0,0.05);
+}
+
+@media (max-width: 1024px) {
+    .login-left {
+        flex: 0 0 100%;
+        padding: 2rem;
+    }
+    .login-right {
+        display: none;
+    }
+}

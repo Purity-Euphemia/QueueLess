@@ -2086,7 +2086,7 @@ body.split-body {
 
 .split-right {
     flex: 3; /* 33% of the screen */
-    background: #eef8f6;
+    background: #ddf5e8;
     position: relative;
     padding: 40px;
     display: flex;
@@ -2184,15 +2184,23 @@ body.split-body {
 }
 
 .split-input-field input {
+    width: 100%;
     border: none !important;
-    outline: none !important;
-    font-size: 14px !important;
-    color: #0f172a !important;
     background: transparent !important;
-    padding: 0 !important;
-    margin: 0 !important;
-    border-radius: 0 !important;
-    width: 100% !important;
+    font-size: 16px;
+    font-weight: 600; /* Bolder text */
+    color: #000000 !important; /* Pure black */
+    padding: 0;
+    margin: 0;
+    height: 24px;
+    outline: none !important;
+    box-shadow: none !important;
+}
+
+.split-input-field input:focus {
+    outline: none !important;
+    box-shadow: none !important;
+    border: none !important;
 }
 
 .split-input-field input::placeholder {
@@ -2425,7 +2433,6 @@ body.split-body {
     height: auto;
     object-fit: contain;
     transform: rotate(8deg);
-    mix-blend-mode: multiply;
     z-index: 1;
 }
 
